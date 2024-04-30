@@ -1,6 +1,11 @@
 <?php
     include "../components/db.php";
     session_start();
+    //$product_id = $_GET['id'];
+    $product_id = 2;
+    $sql = "SELECT * FROM products WHERE id = $product_id";
+    $result = mysqli_query($link, $sql);
+    $product = mysqli_fetch_array($result);
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +36,7 @@
             <div class="col-md-10">
                 <div class="row">
                     <div class="col-md-5 bg-white py-5">
-                        <img src="../images/test.img" class="img-fluid" alt="Product Image" style="width: 100%; height: auto;">
+                        <img src="<?php echo $product['img']; ?>" class="img-fluid" alt="Product Image" style="width: 100%; height: auto;">
                     </div>
                     <div class="col-md-7 bg-white py-5" style="border-left: 1px solid #ececec;">
                         <h2>Bàn phím cơ AKKO 5075B Plus White Akko Switch v3 Cream Yellow Pro</h2>
@@ -42,7 +47,7 @@
                             1.790.000₫
                         </div>
                         <div class="mb-3">
-                            <button class="btn btn-primary">MUA NGAY</button>
+                            <button class="btn btn-primary">Thêm vào giỏ</button>
                         </div>
 
                         <div class="promotional-gifts">
@@ -52,9 +57,9 @@
 
                         <h4>Thông tin chung</h4>
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item"><strong>Hãng sản xuất:</strong> Akko</li>
-                            <li class="list-group-item"><strong>Tình trạng:</strong> Mới</li>
-                            <li class="list-group-item"><strong>Bảo hành:</strong> 12 tháng</li>
+                            <li class="list-group-item"><strong>Hãng sản xuất:</strong> <?php echo $product['manufacturer']; ?></li>
+                            <li class="list-group-item"><strong>Bảo hành:</strong> <?php echo $product['warrant']; ?></li>
+                            <li class="list-group-item"><strong>Mô tả:</strong> <?php echo $product['description']; ?></li>
                         </ul>
                     </div>
                 </div>

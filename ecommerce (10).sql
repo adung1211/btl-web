@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2024 at 09:24 AM
+-- Generation Time: Apr 30, 2024 at 12:40 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -46,30 +46,8 @@ INSERT INTO `account` (`id`, `username`, `email`, `password`, `address`, `role`)
 (4, 'user02', NULL, '123', NULL, 0),
 (5, 'user03', NULL, '123', NULL, 0),
 (6, 'admin1', NULL, '123', NULL, 1),
-(7, 'user04', NULL, '123', NULL, 0);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `cart`
---
-
-CREATE TABLE `cart` (
-  `id` int(10) NOT NULL,
-  `user_id` int(10) NOT NULL,
-  `product_id` int(10) NOT NULL,
-  `quantity` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`id`, `user_id`, `product_id`, `quantity`) VALUES
-(1, 4, 1, 2),
-(2, 2, 4, 1),
-(3, 2, 2, 3),
-(4, 4, 3, 1);
+(7, 'user04', NULL, '123', NULL, 0),
+(10, 'user01', NULL, '123', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -96,7 +74,9 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id`, `user_id`, `full_name`, `email`, `phone_number`, `address`, `note`, `order_date`, `status`, `total_money`) VALUES
 (1, 1, 'John Doe', 'john@example.com', '1234567890', '123 Main St', 'Please deliver after 5pm', '2024-04-30 14:21:35', 'Processing', 100),
-(2, 2, 'Jane Doe', 'jane@example.com', '0987654321', '456 Elm St', 'Leave at front door', '2024-04-30 14:21:35', 'Shipped', 200);
+(2, 2, 'Jane Doe', 'jane@example.com', '0987654321', '456 Elm St', 'Leave at front door', '2024-04-30 14:21:35', 'Shipped', 200),
+(7, 2, 'Thang', 'ddvio.gaming@gmail.com', '0913999442', '365, ABC street, sdfjhds', 'dsd', '2024-04-30 12:16:22', 'Pending', 0),
+(8, 2, 'Thang', 'ddvio.gaming@gmail.com', '0913999442', '365, ABC street, sdfjhds', 'dsd', '2024-04-30 12:18:09', 'Pending', 0);
 
 -- --------------------------------------------------------
 
@@ -162,14 +142,6 @@ ALTER TABLE `account`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `cart`
---
-ALTER TABLE `cart`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_cart_user` (`user_id`),
-  ADD KEY `fk_cart_product` (`product_id`);
-
---
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
@@ -198,19 +170,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT for table `cart`
---
-ALTER TABLE `cart`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `order_line`
@@ -227,13 +193,6 @@ ALTER TABLE `products`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `cart`
---
-ALTER TABLE `cart`
-  ADD CONSTRAINT `fk_cart_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_cart_user` FOREIGN KEY (`user_id`) REFERENCES `account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `orders`
