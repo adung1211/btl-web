@@ -37,6 +37,37 @@
                     <div class="card-box">
                        <div class="row row-cols-5 overflow-scroll flex-nowrap g-2" id="lapG-list">
                             <?php
+                                $sql = "SELECT * FROM products";
+                                $result = mysqli_query($link, $sql);
+
+                                if (mysqli_num_rows($result) > 0) {
+                                    while($product = mysqli_fetch_assoc($result)) {
+                                        echo '
+                                            <div class="col">
+                                                <div class="card">
+                                                    <img src="' . $product['img'] . '" class="card-img-top" alt="...">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">' . substr($product['name'], 0, 20) . '</h5>
+                                                        <p class="card-text">' . substr($product['description'], 0, 70) . '</p>
+                                                        <form action="../components/addtocart.php" method="post">
+                                                            <input type="hidden" name="product_id" value="' . $product['id'] . '">
+                                                            <input type="hidden" name="product_name" value="' . $product['name'] . '">
+                                                            <input type="hidden" name="product_price" value="' . $product['price'] . '">
+                                                            <input type="hidden" name="product_image" value="' . $product['img'] . '">
+                                                            <button type="submit" class="btn btn-primary bg-success">Add to Cart</button>
+                                                        </form>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        ';
+                                    }
+                                } else {
+                                    echo "No products found";
+                                }
+                                mysqli_close($link);
+                            ?>
+                            <?php
                                 for ($x = 0; $x <= 10; $x++) {
                                     echo '
                                         <div class="col">

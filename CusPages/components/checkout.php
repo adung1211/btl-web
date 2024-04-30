@@ -1,4 +1,6 @@
-
+<?php
+    session_start();
+?>
 <head>
     <title>Product Detail</title>
     <meta charset="utf-8" />
@@ -25,7 +27,7 @@
         $note = $_POST['note'];
         $order_date = date('Y-m-d H:i:s');
         $status = 'Pending';
-        $total_money = 0;
+        $total_money = $_POST['total'];
 
         $link = mysqli_connect("localhost", "root", "", "ecommerce");
         if ($link === false) {
@@ -35,6 +37,17 @@
         $sql = "INSERT INTO orders (user_id, full_name, email, phone_number, address, note, order_date, status, total_money) VALUES ($user_id, '$fullname', '$email', '$phone_number', '$address', '$note', '$order_date', '$status', $total_money)";
 
         if(mysqli_query($link, $sql)){
+            $last_id = mysqli_insert_id($link);
+            foreach ($_SESSION['cart'] as $product) {
+                $product_id = $product['id'];
+                $quantity = $product['quantity'];
+                $price = $product['price'];
+                $total = $quantity * $price;
+                $sql = "INSERT INTO order_detail (order_id, product_id, quantity, price, total_price) VALUES ($last_id, $product_id, $quantity, $price, $total)";
+                mysqli_query($link, $sql);
+            }
+            $_SESSION['cart'] = [];
+            $_SESSION['cartcount'] = 0;
             echo '
             <div class="container">
                 <div class="row justify-content-center">
@@ -42,6 +55,7 @@
                         <div class="card mt-5">
                             <div class="card-body">
                                 <h4 class="card-title">Thanh toán thành công!</h4>
+                                <p class="text-center">Đơn hàng của bạn đã được đặt thành công. Mã đơn hàng của bạn là: ' . $last_id . '</p>
                                 <p class="card-text">Cảm ơn bạn đã mua hàng. Bạn sẽ được chuyển hướng đến trang chủ trong vài giây. Nếu không hãy nhấp <a href="../pages/home.php">vào đây</a>.</p>
                             </div>
                         </div>

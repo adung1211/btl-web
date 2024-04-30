@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2024 at 12:40 PM
+-- Generation Time: Apr 30, 2024 at 03:13 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -75,16 +75,16 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`id`, `user_id`, `full_name`, `email`, `phone_number`, `address`, `note`, `order_date`, `status`, `total_money`) VALUES
 (1, 1, 'John Doe', 'john@example.com', '1234567890', '123 Main St', 'Please deliver after 5pm', '2024-04-30 14:21:35', 'Processing', 100),
 (2, 2, 'Jane Doe', 'jane@example.com', '0987654321', '456 Elm St', 'Leave at front door', '2024-04-30 14:21:35', 'Shipped', 200),
-(7, 2, 'Thang', 'ddvio.gaming@gmail.com', '0913999442', '365, ABC street, sdfjhds', 'dsd', '2024-04-30 12:16:22', 'Pending', 0),
-(8, 2, 'Thang', 'ddvio.gaming@gmail.com', '0913999442', '365, ABC street, sdfjhds', 'dsd', '2024-04-30 12:18:09', 'Pending', 0);
+(23, 2, 'Dung', 'dung@gmail.com', '123456789', '365, ABC street', 'wwww', '2024-04-30 15:13:00', 'Pending', 4537000),
+(24, 2, 'Thang', 'tranthangusername@gmail.com', '0913999442', '365, ABC street', 'aaaaaa', '2024-04-30 15:13:26', 'Pending', 10489000);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_line`
+-- Table structure for table `order_detail`
 --
 
-CREATE TABLE `order_line` (
+CREATE TABLE `order_detail` (
   `id` int(10) NOT NULL,
   `order_id` int(10) NOT NULL,
   `product_id` int(10) NOT NULL,
@@ -94,14 +94,20 @@ CREATE TABLE `order_line` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `order_line`
+-- Dumping data for table `order_detail`
 --
 
-INSERT INTO `order_line` (`id`, `order_id`, `product_id`, `quantity`, `price`, `total_price`) VALUES
+INSERT INTO `order_detail` (`id`, `order_id`, `product_id`, `quantity`, `price`, `total_price`) VALUES
 (1, 1, 1, 2, 50, 100),
 (2, 2, 4, 1, 200, 200),
 (3, 2, 2, 3, 50, 150),
-(4, 1, 3, 1, 100, 100);
+(4, 1, 3, 1, 100, 100),
+(11, 23, 3, 3, 319000, 957000),
+(12, 23, 2, 2, 1790000, 3580000),
+(13, 24, 4, 2, 4190000, 8380000),
+(14, 24, 1, 1, 0, 0),
+(15, 24, 3, 1, 319000, 319000),
+(16, 24, 2, 1, 1790000, 1790000);
 
 -- --------------------------------------------------------
 
@@ -149,9 +155,9 @@ ALTER TABLE `orders`
   ADD KEY `fk_orders_account` (`user_id`);
 
 --
--- Indexes for table `order_line`
+-- Indexes for table `order_detail`
 --
-ALTER TABLE `order_line`
+ALTER TABLE `order_detail`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_orderline_product` (`product_id`),
   ADD KEY `fk_orderline_orders` (`order_id`);
@@ -176,13 +182,13 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT for table `order_line`
+-- AUTO_INCREMENT for table `order_detail`
 --
-ALTER TABLE `order_line`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `order_detail`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -201,9 +207,9 @@ ALTER TABLE `orders`
   ADD CONSTRAINT `fk_orders_account` FOREIGN KEY (`user_id`) REFERENCES `account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `order_line`
+-- Constraints for table `order_detail`
 --
-ALTER TABLE `order_line`
+ALTER TABLE `order_detail`
   ADD CONSTRAINT `fk_orderline_orders` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_orderline_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;

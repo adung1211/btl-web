@@ -2,7 +2,7 @@
     include "../components/db.php";
     session_start();
     //$product_id = $_GET['id'];
-    $product_id = 2;
+    $product_id = 3;
     $sql = "SELECT * FROM products WHERE id = $product_id";
     $result = mysqli_query($link, $sql);
     $product = mysqli_fetch_array($result);
@@ -39,22 +39,28 @@
                         <img src="<?php echo $product['img']; ?>" class="img-fluid" alt="Product Image" style="width: 100%; height: auto;">
                     </div>
                     <div class="col-md-7 bg-white py-5" style="border-left: 1px solid #ececec;">
-                        <h2>Bàn phím cơ AKKO 5075B Plus White Akko Switch v3 Cream Yellow Pro</h2>
+                        <h2><?php echo $product['name']; ?></h2>
                         <p style="color: orange;">
                             5 &#9733;
                         </p>
                         <div class="d-flex justify-content-between mb-2 text-danger fs-2 fw-bold">
-                            1.790.000₫
-                        </div>
-                        <div class="mb-3">
-                            <button class="btn btn-primary">Thêm vào giỏ</button>
+                        <?php echo number_format($product['price']); ?> đ
                         </div>
 
                         <div class="promotional-gifts">
                             <h4>Quà tặng khuyến mãi</h4>
                             <p>1 Tặng ngay 1 x Chuột Rapoo M300 Silent Wireless Dark Grey trị giá 319.000₫</p>
                         </div>
-
+                        <div class="mb-3">
+                            <form action="../components/addtocart.php" method="post">
+                                <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                                <input type="hidden" name="product_name" value="<?php echo $product['name']; ?>">
+                                <input type="hidden" name="product_price" value="<?php echo $product['price']; ?>">
+                                <input type="hidden" name="product_image" value="<?php echo $product['img']; ?>">
+                                <input type="hidden" name="product_quantity" value="1">
+                                <button class="btn btn-primary">Thêm vào giỏ</button>
+                            </form>
+                        </div>
                         <h4>Thông tin chung</h4>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"><strong>Hãng sản xuất:</strong> <?php echo $product['manufacturer']; ?></li>

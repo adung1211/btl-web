@@ -6,18 +6,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $product_name = $_POST['product_name']; // Get product_name from form
     $product_price = $_POST['product_price']; // Get product_price from form
     $product_image = $_POST['product_image']; // Get product_image from form
-    $product_quantity = $_POST['product_quantity']; // Get product_quantity from form
 
     if(!isset($_SESSION['cart'])) {
         $_SESSION['cart'] = array(); // Initialize cart array in session if it doesn't exist
+        $_SESSION['cartcount'] = 1;
+        array_push($_SESSION['cart'], array('id' => $product_id, 'name' => $product_name, 'price' => $product_price, 'image' => $product_image, 'quantity' => 1));
+        header("Location: " . $_SERVER['HTTP_REFERER']);
     }
+    else{
+        
+        $_SESSION['cartcount'] +=1;
+        foreach ($_SESSION['cart'] as $key => $product) {
+            if ($product['id'] == $product_id) {
+                // Update quantity if product is already in cart
+                $_SESSION['cart'][$key]['quantity'] += 1;
+                header("Location: " . $_SERVER['HTTP_REFERER']); // Redirect to cart page
+                exit();
+            }
+        }
 
-    if(array_key_exists($product_id, $_SESSION['cart'])) {
-        $_SESSION['cart'][$product_id]['quantity'] += $product_quantity; // Increase quantity if product already exists in cart
-    } else {
-        $_SESSION['cart'][$product_id] = array('name' => $product_name, 'price' => $product_price, 'image' => $product_image, 'quantity' => $product_quantity); // Add product to cart
+        //push to cart
+        array_push($_SESSION['cart'], array('id' => $product_id, 'name' => $product_name, 'price' => $product_price, 'image' => $product_image, 'quantity' => 1));
+
+        //header("Location: ../pages/cart.php"); // Redirect to cart page
+        header("Location: " . $_SERVER['HTTP_REFERER']);
     }
-
-    header("Location: ../pages/cart.php"); // Redirect to cart page
 }
 ?>
