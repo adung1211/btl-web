@@ -1,0 +1,83 @@
+*{
+    margin: 0
+}
+
+.main-container{
+    display: grid;
+    grid-template-columns: 1fr 1300px 1fr;
+    background-color: #ECECEC;
+}
+
+.left-main{
+    grid-column: 1 / 2;
+    height: 100vh;
+}
+
+.center-main{
+    grid-column: 2 / 3;
+}
+
+.center-main *{
+    margin-top: 10px;
+}
+
+.right-main{
+    grid-column: 3 / 4;
+    height: 100vh;
+}
+
+.ele-box{
+    background-color: white;
+    border-radius: 5px;
+    text-align: left;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.head-box{
+    padding-top: 5px;
+    padding-left: 15px;
+}
+
+.card-box{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.card-box .row::-webkit-scrollbar{
+    width: 0;
+}
+
+.card-box .card{
+    height: 480px;
+    width: 250px;
+    border-width: 2px;
+    border-color: #f8f3f3;
+}
+
+.card img:hover{
+    transform: scale(1.1);
+}
+
+.ele-box button{
+    background-color: #ECECEC;
+    border-radius: 10px;
+}
+
+.butLeft{
+    position: absolute;
+    bottom: 300px;
+    left: 5px
+}
+
+.butRight{
+    position: absolute;
+    bottom: 300px;
+    left: 1267px
+}
+
+.ad-banner{
+    width: 200px;
+    margin-left: 50px;
+    margin-top: 20px;
+}

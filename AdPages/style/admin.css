@@ -1,0 +1,53 @@
+*{
+    margin: 0
+}
+
+.main-container{
+    display: grid;
+    grid-template-columns: 300px 1fr;
+}
+
+.left-main{
+    grid-column: 1 / 2;
+    height: 100vh;
+    background-color: #3C3132;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.left-main *{
+    color: white;
+}
+
+.right-main{
+    grid-column: 2 / 3;
+    padding-left: 20px;
+}
+
+.feat-list{
+    margin-top: 50px;
+}
+
+.feat-list > *{
+    display: block;
+    margin-left: 50px;
+    margin-bottom: 30px;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+}
+
+.feat-list *:hover{
+    color: #bdc5cd;
+}
+
+.icon-text{
+    font-size:x-large; 
+    font-style: normal;
+}
+
+#P1 th{
+    background-color: #5A4D45;
+    color: white;
+}
+
