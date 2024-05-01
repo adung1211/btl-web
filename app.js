@@ -41,8 +41,8 @@ function render(productsInfor) {
             <img src=${productsInfor[i][1]} class="card-img-top" alt="Product Image">
             <div class="card-body">
                 <h5 class="card-title">${productsInfor[i][0]}</h5>
-                <p class="card-text">${productsInfor[i][2]}</p>
-                <p class="card-text">${productsInfor[i][3]}</p>
+                <p class="card-text category">${productsInfor[i][2]}</p>
+                <p class="card-text price">${productsInfor[i][3]}</p>
             </div>
             </div>
         </div>
