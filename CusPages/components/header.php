@@ -39,6 +39,9 @@
             <div class="d-flex ms-auto align-items-center flex-nowrap">
                 <?php
                     if (isset($_SESSION['username'])) {
+                        echo '<a href="../pages/order_history.php" class="me-4 text-white">
+                            <i class="fa-solid fa-clipboard fa-lg"></i>
+                            </a>';
                         echo '<a href="../pages/cart.php" class="position-relative">
                         <i class="fa-solid fa-cart-shopping fa-lg me-4 text-white">';
                         if (isset($_SESSION['cartcount']) && $_SESSION['cartcount'] > 0) {
