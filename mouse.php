@@ -27,7 +27,7 @@
     <!-- NAVBAR -->
     <nav class="header navbar navbar-expand-sm navbar-dark bg-danger">
         <div class="container-fluid">
-        <a class="navbar-brand" href="javascript:void(0)">LOGO</a>
+        <a class="navbar-brand" href="product_list.php">LOGO</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -40,7 +40,7 @@
                 <a class="nav-link" href="screen.php">Màn hình</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="mouse.php">Chuột</a>
+                <a class="nav-link" href="javascript:void(0)">Chuột</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="keyboard.php">Bàn phím</a>
@@ -69,21 +69,23 @@
       if (mysqli_num_rows($result) > 0) {
         // Lặp qua từng hàng dữ liệu
         while($row = mysqli_fetch_assoc($result)) {
-            $name = $row["name"];
             $cate = $row["category"];
-            $price = $row["price"];
-            $imgLink = $row["img"];
-            // echo "ID: " . $row["id"]. " - Tên sản phẩm: " . $row["name"]. " - Giá: " . $row["price"]. "<br>";
-            echo "<div class=\"col-md-3 mb-4\">";
-            echo "<div class=\"card product-card\">";
-            echo "<img src=".$imgLink." class=\"card-img-top\" alt=\"Product Image\">";
-            echo  "<div class=\"card-body\">";
-            echo "<h5 class=\"card-title\">$name</h5>";
-            echo "<p class=\"card-text category\">$cate</p>";
-            echo "<p class=\"card-text price\">".number_format($price)." VND</p>";
-            echo "</div>";
-            echo "</div>";
-            echo "</div>";
+            if ($cate == "Mouse") {
+                $name = $row["name"];
+                $price = $row["price"];
+                $imgLink = $row["img"];
+                // echo "ID: " . $row["id"]. " - Tên sản phẩm: " . $row["name"]. " - Giá: " . $row["price"]. "<br>";
+                echo "<div class=\"col-md-3 mb-4\">";
+                echo "<div class=\"card product-card\">";
+                echo "<img src=".$imgLink." class=\"card-img-top\" alt=\"Product Image\">";
+                echo  "<div class=\"card-body\">";
+                echo "<h5 class=\"card-title\">$name</h5>";
+                echo "<p class=\"card-text category\">$cate</p>";
+                echo "<p class=\"card-text price\">".number_format($price)." VND</p>";
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
+            }
         }
       } 
       else {
