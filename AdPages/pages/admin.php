@@ -78,10 +78,10 @@
                                 }
                             ?>
                         </tbody>
-                        <script>
+                        <!-- <script>
                             height = "<?php echo $no;?>" * 220 + "px";
                             $(".left-main").css("height", height);
-                        </script>
+                        </script> -->
                     </table>
                     <?php include "../components/form.php" ?>
                     
