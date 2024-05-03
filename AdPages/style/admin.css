@@ -9,7 +9,6 @@
 
 .left-main{
     grid-column: 1 / 2;
-    height: 100vh;
     background-color: #3C3132;
     text-align: center;
     padding-top: 10px;

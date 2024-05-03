@@ -4,6 +4,8 @@
 ?>
 <?php
 $id = $_GET['id'];
-$query = "DELETE FROM products WHERE ID = '$id'";
+$query = "  UPDATE products
+            SET deleted	 = 1
+            WHERE id = '$id';";
 $result = mysqli_query($link, $query);
 ?>

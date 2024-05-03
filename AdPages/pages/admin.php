@@ -40,9 +40,9 @@
                 <img src="https://i.imgur.com/xWZdHHX.jpeg" style="width: 500px; margin-top: 50px"></td>
                 </div>
 
-                <div id="P1">
+                <div id="P1" style="margin-right: 50px;">
                     <h1>Products List Items</h1>
-                    <table class="table table-striped table-bordered" style="width: 1000px;">
+                    <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
                             <th scope="col">S.N</th>
@@ -60,22 +60,28 @@
                                 $no = 0;
 
                                 while (mysqli_num_rows($result) > 0 && $row = mysqli_fetch_assoc($result)){
+                                    if ($row['deleted'] == 1) continue;
                                     $no++;
                                     echo '
                                         <tr>
                                             <td>'.$no.'</td>
-                                            <td>'.$row['Name'].'</td>
-                                            <td>'.$row['Category'].'</td>
-                                            <td><img src="'.$row['Img'].'" style="width: 150px"></td>
+                                            <td>'.$row['name'].'</td>
+                                            <td>'.$row['category'].'</td>
+                                            <td><img src="'.$row['img'].'" style="height: 150px"></td>
                                             <td>
-                                                <button type="button" class="btn btn-primary">Edit</button>
-                                                <button type="button" class="btn btn-danger" onClick="handleDel('.$row['ID'].')">Delete</button>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" onClick="handleEdit('.$row['id'].', \''.$row['name'].'\',\''.$row['category'].'\' ,\''.$row['img'].'\', \''.$row['price'].'\', \''.$row['manufacturer'].'\', \''.$row['warrant'].'\')">Edit</button>
+                                                <button type="button" class="btn btn-danger" onClick="handleDel('.$row['id'].')">Delete</button>
                                             </td>
                                         </tr>
                                     ';
+                                    
                                 }
                             ?>
                         </tbody>
+                        <script>
+                            height = "<?php echo $no;?>" * 220 + "px";
+                            $(".left-main").css("height", height);
+                        </script>
                     </table>
                     <?php include "../components/form.php" ?>
                     
