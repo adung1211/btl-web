@@ -34,21 +34,14 @@
                                     <input type="password" class="form-control" id="password" name="password" required>
                                 </div>
                                 <?php
-                                if (isset($_POST['submit'])) {
+                                if (isset($_POST['submitlogin'])) {
 
                                     $username = $_POST['username'];
                                     $password = $_POST['password'];
 
-                                    $query = "SELECT * FROM account WHERE username = '$username' AND password = '$password'";
-                                    $result = mysqli_query($link, $query);
-                                    $row = mysqli_fetch_array($result);
-                                    if ($row) {
-                                        $_SESSION['userid'] = $row['id'];
-                                        $_SESSION['username'] = $username;
+                                    if (login($username, $password)) {
                                         header('Location: ../pages/home.php');
-                                    }
-                                    else
-                                    {
+                                    } else {
                                         echo "<script>alert('Login failed');</script>";
                                     }
                                 }
@@ -58,7 +51,7 @@
                         <div class="modal-footer">
                             
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" name="submit">Login</button>
+                            <button type="submit" class="btn btn-primary" name="submitlogin">Login</button>
                             
                         </div>
                     </form>

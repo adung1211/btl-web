@@ -32,7 +32,7 @@
         $total_money = $_POST['total'];
 
 
-        $result = insert_order($link, $user_id, $fullname, $email, $phone_number, $address, $note, $order_date, $status, $total_money, $_SESSION['cart']);
+        $result = insert_order( $user_id, $fullname, $email, $phone_number, $address, $note, $order_date, $status, $total_money, $_SESSION['cart']);
 
         if($result) {
             $_SESSION['cart'] = [];
@@ -43,7 +43,7 @@
                     <div class="col-md-6">
                         <div class="card mt-5">
                             <div class="card-body">
-                                <h4 class="card-title">Thanh toán thành công!</h4>
+                                <h4 class="card-title">Đặt hàng thành công!</h4>
                                 <p class="card-text">Cảm ơn bạn đã mua hàng. Bạn sẽ được chuyển hướng đến trang chủ trong vài giây. Nếu không hãy nhấp <a href="../pages/home.php">vào đây</a>.</p>
                             </div>
                         </div>

@@ -1,11 +1,9 @@
 <?php
-    include "../components/db.php";
+    require_once "../script/function.php";
     session_start();
     //$product_id = $_GET['id'];
     $product_id = 3;
-    $sql = "SELECT * FROM products WHERE id = $product_id";
-    $result = mysqli_query($link, $sql);
-    $product = mysqli_fetch_array($result);
+    $product = getProductInfo($product_id);
 ?>
 
 <!DOCTYPE html>

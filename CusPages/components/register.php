@@ -34,25 +34,16 @@
                                     <input type="password" class="form-control" id="password" name="password" required>
                                 </div>
                                 <?php
-                                if (isset($_POST['username']) && isset($_POST['password'])) {
-
+                                if (isset($_POST['submitregister'])) {
                                     $username = $_POST['username'];
                                     $password = $_POST['password'];
-
-                                    $query = "INSERT INTO account (username, password) VALUES ('$username', '$password')";
-                                    $result = mysqli_query($link, $query);
-
-                                    if ($result) {
-                                        $_SESSION['userid'] = $row['id'];
-                                        $_SESSION['username'] = $username;
-                                        echo "<script>alert('Register success');</script>";
-                                    }
+                                    register($username, $password);
                                 }
                             ?>
                         </div>
                         
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary">Register</button>
+                            <button type="submit" class="btn btn-primary" name="submitregister">Register</button>
                         </div>
                     </form>
                 </div>

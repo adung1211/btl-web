@@ -1,11 +1,9 @@
 <?php
-    include "../components/db.php";
-    include '../script/function.php';
+    require_once "../script/function.php";
     session_start();
 
-    $user_id = $_SESSION['userid']; // Assuming the user_id is stored in the session
-    $sql = "SELECT * FROM orders WHERE user_id = $user_id";
-    $result = mysqli_query($link, $sql);
+    $user_id = $_SESSION['userid'];
+    $result = getOrdersByUserId($user_id);
     
 ?>
 
@@ -37,7 +35,7 @@
                                     <table class="table">
                                         <thead class="sticky-header">
                                             <tr>
-                                                <th scope="col">ID Đơn hàng</th>
+                                                <th scope="col">ID</th>
                                                 <th scope="col">Ngày tạo</th>
                                                 <th scope="col">Trạng thái</th>
                                                 <th scope="col">Tổng cộng</th>
@@ -55,14 +53,13 @@
                                         <td>' . $order['status'] . '</td>
                                         <td>' . number_format($order['total_money'], 0, ',', '.') . ' đ</td>
                                 ';
-                                $order_id = $order['id'];
-                                $sql_details = "SELECT * FROM order_detail WHERE order_id = $order_id";
-                                $result_details = mysqli_query($link, $sql_details);
+                                $orderId = $order['id'];
+                                $result_details = getOrderDetailsByOrderId($orderId);
 
                                 if (mysqli_num_rows($result_details) > 0) {
                                     echo '<td>';
                                     while($detail = mysqli_fetch_assoc($result_details)) {
-                                        $productInfo = getProductInfo($link, $detail['product_id']);
+                                        $productInfo = getProductInfo($detail['product_id']);
                                         echo '
                                             <div class="d-flex">
                                                 <div class="font-weight-bold h5">
@@ -90,36 +87,16 @@
                 <div class="bg-white rounded border border-gray p-4">
                     <h2 class="font-weight-bold h3 mb-4">Summary</h2>
                     <?php
-                    $sql = "SELECT status, total_money FROM orders WHERE user_id = ?";
-                    $stmt = mysqli_prepare($link, $sql);
-                    mysqli_stmt_bind_param($stmt, "i", $user_id);
-                    mysqli_stmt_execute($stmt);
-                    $result = mysqli_stmt_get_result($stmt);
-                    $totalSpend = 0;
-                    $pending = $shipped = $processing = $shipping = 0;
-                    while ($order = mysqli_fetch_assoc($result)) {
-                        $totalSpend += $order['total_money'];
-
-                        switch ($order['status']) {
-                            case 'Pending':
-                                $pending++;
-                                break;
-                            case 'Shipped':
-                                $shipped++;
-                                break;
-                            case 'Processing':
-                                $processing++;
-                                break;
-                            case 'Shipping':
-                                $shipping++;
-                                break;
-                        }
-                    }
-                    echo "<p style='color: #333; font-size: 20px; font-weight: bold;'>Pending: $pending</p>";
-                    echo "<p style='color: #333; font-size: 20px; font-weight: bold;'>Shipped: $shipped</p>";
-                    echo "<p style='color: #333; font-size: 20px; font-weight: bold;'>Processing: $processing</p>";
-                    echo "<p style='color: #333; font-size: 20px; font-weight: bold;'>Shipping: $shipping</p>";
-                    echo "<p style='color: #039c22; font-size: 30px; font-weight: bold;'>Tổng tiêu: <br/>" . number_format($totalSpend, 0, ',', '.') . " đ</p>";
+                        $userId = $_SESSION['userid'];
+                        $orderSummary = getOrderSummaryByUserId($userId);
+                        
+                        echo "<p style='color: #333; font-size: 20px; font-weight: bold;'>Total Orders: " . $orderSummary['totalOrders'] . "</p>";
+                        echo "<p style='color: #333; font-size: 20px; font-weight: bold;'>Cancelled: " . $orderSummary['cancelled'] . "</p>";
+                        echo "<p style='color: #333; font-size: 20px; font-weight: bold;'>Pending: " . $orderSummary['pending'] . "</p>";
+                        echo "<p style='color: #333; font-size: 20px; font-weight: bold;'>Shipped: " . $orderSummary['shipped'] . "</p>";
+                        echo "<p style='color: #333; font-size: 20px; font-weight: bold;'>Processing: " . $orderSummary['processing'] . "</p>";
+                        echo "<p style='color: #333; font-size: 20px; font-weight: bold;'>Shipping: " . $orderSummary['shipping'] . "</p>";
+                        echo "<p style='color: #039c22; font-size: 30px; font-weight: bold;'>Tổng tiêu: <br/>" . number_format($orderSummary['totalSpend'], 0, ',', '.') . " đ</p>";
                     ?>
                 </div>
             </div>

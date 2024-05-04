@@ -1,5 +1,7 @@
 <!--Navbar-->
-
+<?php
+    require_once "../script/function.php";
+?>
 <head>
     <title>Product Detail</title>
     <meta charset="utf-8" />
