@@ -1,18 +1,18 @@
 let PriceNotComma = -1;
 
-function Show(num){
-    for (var i = 0; i < 2; i++){
-        if (num != i){
-            let temp = "#P" + i;
-            $(temp).hide()
-        }
-        else{
-            let temp = "#P" + num;
-            $(temp).show()
-        }
-    }
-}
-Show('1')
+// function Show(num){
+//     for (var i = 0; i < 2; i++){
+//         if (num != i){
+//             let temp = "#P" + i;
+//             $(temp).hide()
+//         }
+//         else{
+//             let temp = "#P" + num;
+//             $(temp).show()
+//         }
+//     }
+// }
+// Show('1')
 
 function handleDel(id){
     let isConfirmed = confirm('Are you sure you want to delete this item?');

@@ -5,6 +5,7 @@
 .main-container{
     display: grid;
     grid-template-columns: 300px 1fr;
+    background-color: #ECECEC;
 }
 
 .left-main{
@@ -22,6 +23,8 @@
 .right-main{
     grid-column: 2 / 3;
     padding-left: 20px;
+    height: 100vh;
+    overflow: auto;
 }
 
 .feat-list{
@@ -30,7 +33,6 @@
 
 .feat-list > *{
     display: block;
-    margin-left: 50px;
     margin-bottom: 30px;
     background-color: transparent;
     background-repeat: no-repeat;
@@ -41,13 +43,44 @@
     color: #bdc5cd;
 }
 
+.feat-list a{
+    text-decoration: none;
+    text-align: start;
+    margin-left: 50px;
+}
+
 .icon-text{
     font-size:x-large; 
     font-style: normal;
 }
 
-#P1 th{
+.right-main th{
     background-color: #5A4D45;
     color: white;
 }
+
+/* ---details page--- */
+.ele-box{
+    background-color: white;
+    border-radius: 5px;
+    text-align: left;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    /* font-size: large; */
+    width: 1000px;
+}
+
+.tx0{
+    margin-top: 25px; 
+    height: 40px;
+    pointer-events: none;
+}
+
+.tx1{
+    color: #938d8d;
+}
+
+
 

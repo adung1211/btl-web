@@ -1,5 +1,5 @@
 
 <?php
-header("Location: pages/admin.php");
+header("Location: pages/products.php");
 exit;
 ?>
