@@ -36,7 +36,10 @@
                                 if (isset($_POST['submitregister'])) {
                                     $username = $_POST['username'];
                                     $password = $_POST['password'];
-                                    register($username, $password);
+                                    if (register($username, $password))
+                                        echo "<script>alert('Register successful');</script>";
+                                    else
+                                        echo "<script>alert('Register failed');</script>";
                                 }
                             ?>
                         </div>

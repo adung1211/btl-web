@@ -7,14 +7,11 @@
 
     function login($username, $password) {
         global $link;
-
-        $query = "SELECT * FROM account WHERE username = ? AND password = ?";
-        $stmt = mysqli_prepare($link, $query);
-        mysqli_stmt_bind_param($stmt, "ss", $username, $password);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
+    
+        $query = "SELECT * FROM account WHERE username = '$username' AND password = '$password'";
+        $result = mysqli_query($link, $query);
         $row = mysqli_fetch_array($result);
-
+    
         if ($row) {
             $_SESSION['userid'] = $row['id'];
             $_SESSION['username'] = $username;
@@ -24,22 +21,13 @@
         }
     }
 
-
     function register($username, $password) {
         global $link;
-        $query = "INSERT INTO account (username, password) VALUES (?, ?)";
-        $stmt = mysqli_prepare($link, $query);
-        mysqli_stmt_bind_param($stmt, "ss", $username, $password);
-        $result = mysqli_stmt_execute($stmt);
-
+        $query = "INSERT INTO account (username, password) VALUES ('$username', '$password')";
+        $result = mysqli_query($link, $query);
         if ($result) {
-            $userId = mysqli_insert_id($link);
-            $_SESSION['userid'] = $userId;
-            $_SESSION['username'] = $username;
-            echo "<script>alert('Register success');</script>";
             return true;
         } else {
-            echo "<script>alert('Register failed');</script>";
             return false;
         }
     }

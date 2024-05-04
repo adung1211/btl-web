@@ -41,6 +41,7 @@
 
                                     if (login($username, $password)) {
                                         header('Location: ../pages/home.php');
+                                        
                                     } else {
                                         echo "<script>alert('Login failed');</script>";
                                     }
