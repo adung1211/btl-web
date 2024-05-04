@@ -1,6 +1,8 @@
 <?php
-    include "../components/db.php";
-    session_start();
+    require_once "../script/function.php";
+    if(session_status() == PHP_SESSION_NONE){
+        session_start();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -37,8 +39,7 @@
                     <div class="card-box">
                        <div class="row row-cols-5 overflow-scroll flex-nowrap g-2" id="lapG-list">
                             <?php
-                                $sql = "SELECT * FROM products";
-                                $result = mysqli_query($link, $sql);
+                                $result = getAllProducts();
 
                                 if (mysqli_num_rows($result) > 0) {
                                     while($product = mysqli_fetch_assoc($result)) {

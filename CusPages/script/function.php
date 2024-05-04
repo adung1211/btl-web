@@ -39,6 +39,7 @@
             echo "<script>alert('Register success');</script>";
             return true;
         } else {
+            echo "<script>alert('Register failed');</script>";
             return false;
         }
     }
@@ -102,6 +103,14 @@
             'shipping' => $shipping,
             'totalSpend' => $totalSpend,
         ];
+    }
+    function getAllProducts() {
+        global $link;
+    
+        $sql = "SELECT * FROM products";
+        $result = mysqli_query($link, $sql);
+    
+        return $result;
     }
 
     function getProductInfo($productId) {

@@ -1,6 +1,8 @@
 <?php
     require_once "../script/function.php";
-    session_start();
+    if(session_status() == PHP_SESSION_NONE){
+        session_start();
+    }
 
     $user_id = $_SESSION['userid'];
     $result = getOrdersByUserId($user_id);

@@ -1,5 +1,4 @@
 <?php
-    include "../components/db.php";
     if(session_status() == PHP_SESSION_NONE){
         session_start();
     }
