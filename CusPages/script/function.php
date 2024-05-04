@@ -40,6 +40,20 @@
     
         return $result;
     }
+    
+    function getNotificationsByUserId($userId) {
+        global $link;
+    
+        $sql = "SELECT * FROM notifications WHERE user_id = $userId";
+        $result = mysqli_query($link, $sql);
+    
+        $notifications = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $notifications[] = $row;
+        }
+    
+        return $notifications;
+    }
 
     function getOrderDetailsByOrderId($orderId) {
         global $link;
@@ -52,17 +66,15 @@
 
     function getOrderSummaryByUserId($userId) {
         global $link;
-
-        $sql = "SELECT status, total_money FROM orders WHERE user_id = ?";
-        $stmt = mysqli_prepare($link, $sql);
-        mysqli_stmt_bind_param($stmt, "i", $userId);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
+    
+        $sql = "SELECT status, total_money FROM orders WHERE user_id = $userId";
+        $result = mysqli_query($link, $sql);
+    
         $totalSpend = 0;
         $pending = $shipped = $processing = $shipping = $cancelled = 0;
         while ($order = mysqli_fetch_assoc($result)) {
             $totalSpend += $order['total_money'];
-
+    
             switch ($order['status']) {
                 case 'Cancelled':
                     $cancelled++;
@@ -81,7 +93,7 @@
                     break;
             }
         }
-
+    
         return [
             'totalOrders' => $pending + $shipped + $processing + $shipping,
             'cancelled' => $cancelled,
@@ -92,6 +104,7 @@
             'totalSpend' => $totalSpend,
         ];
     }
+
     function getAllProducts() {
         global $link;
     
@@ -103,12 +116,9 @@
 
     function getProductInfo($productId) {
         global $link;
-        $sql = "SELECT * FROM products WHERE id = ?";
-        $stmt = mysqli_prepare($link, $sql);
-        mysqli_stmt_bind_param($stmt, "i", $productId);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-
+        $sql = "SELECT * FROM products WHERE id = $productId";
+        $result = mysqli_query($link, $sql);
+    
         if (mysqli_num_rows($result) > 0) {
             return mysqli_fetch_assoc($result);
         } else {
@@ -134,5 +144,17 @@
         } else {
             return false;
         }
+    }
+
+    function markNotificationAsRead($id) {
+        global $link;
+        $sql = "UPDATE notifications SET read_status = 1 WHERE id = $id";
+        $result = mysqli_query($link, $sql);
+        return mysqli_affected_rows($link);
+    }
+    function markAllNotificationsAsRead($userId) {
+        global $link;
+        $sql = "UPDATE notifications SET read_status = 1 WHERE user_id = $userId";
+        mysqli_query($link, $sql);
     }
 ?>

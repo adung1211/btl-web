@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2024 at 03:13 PM
+-- Generation Time: May 04, 2024 at 03:04 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -46,8 +46,40 @@ INSERT INTO `account` (`id`, `username`, `email`, `password`, `address`, `role`)
 (4, 'user02', NULL, '123', NULL, 0),
 (5, 'user03', NULL, '123', NULL, 0),
 (6, 'admin1', NULL, '123', NULL, 1),
-(7, 'user04', NULL, '123', NULL, 0),
-(10, 'user01', NULL, '123', NULL, 0);
+(15, 'aaa', NULL, 'aaa', NULL, 0),
+(16, 'bbb', NULL, 'bbb', NULL, 0),
+(18, 'user', NULL, '123', NULL, 0),
+(19, 'ccc', NULL, 'ccc', NULL, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id` int(10) NOT NULL,
+  `user_id` int(10) NOT NULL,
+  `title` text NOT NULL,
+  `msg` text NOT NULL,
+  `read_status` tinyint(1) NOT NULL DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `user_id`, `title`, `msg`, `read_status`, `created_at`) VALUES
+(1, 2, 'test msg', 'this is a notification message', 1, '2024-05-04 09:06:30'),
+(2, 2, 'test msg 2', 'this is a second notification message', 0, '2024-05-04 09:06:38'),
+(3, 4, 'hi', 'hello', 1, '2024-05-04 09:11:31'),
+(4, 2, 'gg', 'third msg', 0, '2024-05-04 09:16:56'),
+(5, 2, 'wwwwwww wwwwwwww wwwwwwwww fqihvnriopqwh nrbi puqwhnwvrip  uqwhnbrio uqrwhnbipruqwh nbriuqwbhriuq whn briuqwhbr iquwb hriuqwbhri oqwbhriquwb hrqwibur', 'wwwwwww wwwwwwww wwwwwwwww fqihvnriopqwh nrbi puqwhnwvrip  uqwhnbrio uqrwhnbipruqwh nbriuqwbhriuq whn briuqwhbr iquwb hriuqwbhri oqwbhriquwb hrqwibur', 0, '2024-05-04 10:42:24'),
+(6, 2, 'ff', 'wwwwwffwfwfwwwwwwwwwwwwww', 0, '2024-05-04 10:43:51'),
+(7, 2, 'gg', 'gsg', 0, '2024-05-04 10:45:40'),
+(8, 2, '224', 'fsggg', 1, '2024-05-04 10:48:00'),
+(9, 2, 'gs', 'gggggg', 1, '2024-05-04 10:53:53');
 
 -- --------------------------------------------------------
 
@@ -76,7 +108,9 @@ INSERT INTO `orders` (`id`, `user_id`, `full_name`, `email`, `phone_number`, `ad
 (1, 1, 'John Doe', 'john@example.com', '1234567890', '123 Main St', 'Please deliver after 5pm', '2024-04-30 14:21:35', 'Processing', 100),
 (2, 2, 'Jane Doe', 'jane@example.com', '0987654321', '456 Elm St', 'Leave at front door', '2024-04-30 14:21:35', 'Shipped', 200),
 (23, 2, 'Dung', 'dung@gmail.com', '123456789', '365, ABC street', 'wwww', '2024-04-30 15:13:00', 'Pending', 4537000),
-(24, 2, 'Thang', 'tranthangusername@gmail.com', '0913999442', '365, ABC street', 'aaaaaa', '2024-04-30 15:13:26', 'Pending', 10489000);
+(24, 2, 'Thang', 'tranthangusername@gmail.com', '0913999442', '365, ABC street', 'aaaaaa', '2024-04-30 15:13:26', 'Pending', 10489000),
+(25, 2, 'Tran Thang', 'tranthangusername@gmail.com', '0913999442', '365, ABC street', 'hello', '2024-05-04 07:29:46', 'Pending', 319000),
+(26, 2, 'Tran Thang', 'user@gmail.com', '0913999442', '365, ABC street, sdfjhds', 'wwww', '2024-05-04 08:14:55', 'Pending', 10170000);
 
 -- --------------------------------------------------------
 
@@ -107,7 +141,10 @@ INSERT INTO `order_detail` (`id`, `order_id`, `product_id`, `quantity`, `price`,
 (13, 24, 4, 2, 4190000, 8380000),
 (14, 24, 1, 1, 0, 0),
 (15, 24, 3, 1, 319000, 319000),
-(16, 24, 2, 1, 1790000, 1790000);
+(16, 24, 2, 1, 1790000, 1790000),
+(17, 25, 3, 1, 319000, 319000),
+(18, 26, 4, 2, 4190000, 8380000),
+(19, 26, 2, 1, 1790000, 1790000);
 
 -- --------------------------------------------------------
 
@@ -145,7 +182,15 @@ INSERT INTO `products` (`id`, `name`, `category`, `img`, `price`, `manufacturer`
 -- Indexes for table `account`
 --
 ALTER TABLE `account`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_notifications_account` (`user_id`);
 
 --
 -- Indexes for table `orders`
@@ -159,8 +204,8 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `order_detail`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_orderline_product` (`product_id`),
-  ADD KEY `fk_orderline_orders` (`order_id`);
+  ADD KEY `fk_orderline_orders` (`order_id`),
+  ADD KEY `fk_orderline_product` (`product_id`);
 
 --
 -- Indexes for table `products`
@@ -176,19 +221,25 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -201,6 +252,12 @@ ALTER TABLE `products`
 --
 
 --
+-- Constraints for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD CONSTRAINT `fk_notifications_account` FOREIGN KEY (`user_id`) REFERENCES `account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `orders`
 --
 ALTER TABLE `orders`
@@ -211,7 +268,7 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `order_detail`
   ADD CONSTRAINT `fk_orderline_orders` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_orderline_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_orderline_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

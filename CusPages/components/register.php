@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <title>Login</title>
     <link rel="stylesheet" href="../style/bootstrap.min.css">
-    <script src="../script/bootstrap.min.js"></script>
+    <script src="../script/bootstrap.bundle.min.js"></script>
     <script src="../script/jquery-3.7.1.min.js"></script>
 </head>
 
