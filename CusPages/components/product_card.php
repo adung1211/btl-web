@@ -16,7 +16,7 @@
                         <input type=\"hidden\" name=\"product_name\" value=\"{$product['name']}\">
                         <input type=\"hidden\" name=\"product_price\" value=\"{$product['price']}\">
                         <input type=\"hidden\" name=\"product_image\" value=\"{$product['img']}\">
-                        <button type=\"submit\" class=\"btn btn-primary bg-success\">Add to Cart</button>
+                        <button type=\"submit\" class=\"btn btn-primary bg-success\">Thêm vào giỏ</button>
                     </form>
                 </div>
             </div>

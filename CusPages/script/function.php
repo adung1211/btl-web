@@ -110,7 +110,7 @@
     
         $sql = "SELECT * FROM products";
         if ($sortColumn && $sortOrder) {
-            $sql .= " ORDER BY " . mysqli_real_escape_string($link, $sortColumn) . " " . mysqli_real_escape_string($link, $sortOrder);
+            $sql .= " ORDER BY " . $sortColumn . " " . $sortOrder;
         }
         $result = mysqli_query($link, $sql);
     
@@ -122,7 +122,7 @@
     
         $sql = "SELECT * FROM products WHERE category = '" . mysqli_real_escape_string($link, $category) . "'";
         if ($sortColumn && $sortOrder) {
-            $sql .= " ORDER BY " . mysqli_real_escape_string($link, $sortColumn) . " " . mysqli_real_escape_string($link, $sortOrder);
+            $sql .= " ORDER BY " . $sortColumn . " " . $sortOrder;
         }
         $result = mysqli_query($link, $sql);
     
@@ -160,6 +160,14 @@
             return false;
         }
     }
+    
+    function addReview($userId, $username, $productId, $rating, $comment) {
+        global $link;
+    
+        $sql = "INSERT INTO reviews (user_id, username, product_id, rating, comment) VALUES ($userId, '$username', $productId, $rating, '$comment')";
+
+        mysqli_query($link, $sql);
+    }
 
     function markNotificationAsRead($id) {
         global $link;
@@ -171,5 +179,53 @@
         global $link;
         $sql = "UPDATE notifications SET read_status = 1 WHERE user_id = $userId";
         mysqli_query($link, $sql);
+    }
+
+    function getAllReviews($productId) {
+        global $link;
+
+        $sql = "SELECT * FROM reviews WHERE product_id = $productId ORDER BY created_at DESC";
+
+        $result = mysqli_query($link, $sql);
+
+        $reviews = array();
+        if (mysqli_num_rows($result) > 0) {
+            while($review = mysqli_fetch_assoc($result)) {
+                $reviews[] = $review;
+            }
+        }
+        mysqli_free_result($result);
+        return $reviews;
+    }
+
+    function getProductRatings($productId) {
+        global $link;
+    
+        $sql = "SELECT rating, COUNT(*) as count FROM reviews WHERE product_id = $productId GROUP BY rating";
+    
+        $result = mysqli_query($link, $sql);
+    
+        $ratings = array(1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0);
+        $totalRating = 0;
+        $numRatings = 0;
+    
+        if (mysqli_num_rows($result) > 0) {
+            while($row = mysqli_fetch_assoc($result)) {
+                $ratings[$row['rating']] = $row['count'];
+                $totalRating += $row['rating'] * $row['count'];
+                $numRatings += $row['count'];
+            }
+        }
+    
+        $averageRating = $numRatings > 0 ? number_format($totalRating / $numRatings, 1) : 0;
+    
+        mysqli_free_result($result);
+    
+        return array(
+            'averageRating' => $averageRating,
+            'totalRating' => $totalRating,
+            'numRatings' => $numRatings,
+            'ratings' => $ratings
+        );
     }
 ?>
