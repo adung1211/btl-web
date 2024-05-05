@@ -1,6 +1,10 @@
 <?php
     include "../components/db.php";
     session_start();
+
+    if (empty($_SESSION['AdUserId'])){
+        header('Location: ../pages/login.php');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +24,7 @@
     <body>
         <!-- Left content -->
         <div class="main-container">
-            <?php include "../components/leftMain.html" ?>
+            <?php include "../components/leftMain.php" ?>
 
             <!-- Right content -->
             <div class="right-main">

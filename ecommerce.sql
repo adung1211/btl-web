@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 05, 2024 at 06:40 AM
+-- Generation Time: May 05, 2024 at 03:10 PM
 -- Server version: 8.0.36-0ubuntu0.22.04.1
 -- PHP Version: 8.1.2-1ubuntu2.17
 
@@ -64,7 +64,7 @@ CREATE TABLE `notifications` (
   `msg` text NOT NULL,
   `read_status` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `notifications`
@@ -79,7 +79,11 @@ INSERT INTO `notifications` (`id`, `user_id`, `title`, `msg`, `read_status`, `cr
 (6, 2, 'ff', 'wwwwwffwfwfwwwwwwwwwwwwww', 1, '2024-05-04 10:43:51'),
 (7, 2, 'gg', 'gsg', 1, '2024-05-04 10:45:40'),
 (8, 2, '224', 'fsggg', 1, '2024-05-04 10:48:00'),
-(9, 2, 'gs', 'gggggg', 1, '2024-05-04 10:53:53');
+(9, 2, 'gs', 'gggggg', 1, '2024-05-04 10:53:53'),
+(10, 2, 'Đơn hàng đã được xác nhận', 'Cảm ơn bạn đã mua hàng tại shop chúng tôi', 0, '2024-05-04 23:43:39'),
+(11, 2, 'Đơn hàng đã được xác nhận', 'Cảm ơn bạn đã mua hàng tại shop chúng tôi', 0, '2024-05-04 23:45:29'),
+(12, 2, 'Đơn hàng đã được xác nhận', 'Cảm ơn bạn đã mua hàng tại shop chúng tôi', 0, '2024-05-04 23:45:34'),
+(13, 2, 'Đơn hàng đã được xác nhận', 'Cảm ơn bạn đã mua hàng tại shop chúng tôi', 0, '2024-05-04 23:45:38');
 
 -- --------------------------------------------------------
 
@@ -98,7 +102,7 @@ CREATE TABLE `orders` (
   `order_date` datetime NOT NULL,
   `status` varchar(50) NOT NULL,
   `total_money` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `orders`
@@ -107,10 +111,10 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`id`, `user_id`, `full_name`, `email`, `phone_number`, `address`, `note`, `order_date`, `status`, `total_money`) VALUES
 (1, 1, 'John Doe', 'john@example.com', '1234567890', '123 Main St', 'Please deliver after 5pm', '2024-04-30 14:21:35', 'Confirmed', 100),
 (2, 2, 'Jane Doe', 'jane@example.com', '0987654321', '456 Elm St', 'Leave at front door', '2024-04-30 14:21:35', 'Confirmed', 200),
-(23, 2, 'Dung', 'dung@gmail.com', '123456789', '365, ABC street', 'wwww', '2024-04-30 15:13:00', 'Pending', 4537000),
-(24, 2, 'Thang', 'tranthangusername@gmail.com', '0913999442', '365, ABC street', 'aaaaaa', '2024-04-30 15:13:26', 'Pending', 10489000),
-(25, 2, 'Tran Thang', 'tranthangusername@gmail.com', '0913999442', '365, ABC street', 'hello', '2024-05-04 07:29:46', 'Pending', 319000),
-(26, 2, 'Tran Thang', 'user@gmail.com', '0913999442', '365, ABC street, sdfjhds', 'wwww', '2024-05-04 08:14:55', 'Pending', 10170000);
+(23, 2, 'Dung', 'dung@gmail.com', '123456789', '365, ABC street', 'wwww', '2024-04-30 15:13:00', 'Confirmed', 4537000),
+(24, 2, 'Thang', 'tranthangusername@gmail.com', '0913999442', '365, ABC street', 'aaaaaa', '2024-04-30 15:13:26', 'Confirmed', 10489000),
+(25, 2, 'Tran Thang', 'tranthangusername@gmail.com', '0913999442', '365, ABC street', 'hello', '2024-05-04 07:29:46', 'Confirmed', 319000),
+(26, 2, 'Tran Thang', 'user@gmail.com', '0913999442', '365, ABC street, sdfjhds', 'wwww', '2024-05-04 08:14:55', 'Confirmed', 10170000);
 
 -- --------------------------------------------------------
 
@@ -125,7 +129,7 @@ CREATE TABLE `order_detail` (
   `quantity` int NOT NULL,
   `price` int NOT NULL,
   `total_price` int NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `order_detail`
@@ -227,7 +231,7 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `orders`
