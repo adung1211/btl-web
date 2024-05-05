@@ -105,10 +105,25 @@
         ];
     }
 
-    function getAllProducts() {
+    function getAllProducts($sortColumn = null, $sortOrder = null) {
         global $link;
     
         $sql = "SELECT * FROM products";
+        if ($sortColumn && $sortOrder) {
+            $sql .= " ORDER BY " . mysqli_real_escape_string($link, $sortColumn) . " " . mysqli_real_escape_string($link, $sortOrder);
+        }
+        $result = mysqli_query($link, $sql);
+    
+        return $result;
+    }
+    
+    function getProductsByCategory($category, $sortColumn = null, $sortOrder = null) {
+        global $link;
+    
+        $sql = "SELECT * FROM products WHERE category = '" . mysqli_real_escape_string($link, $category) . "'";
+        if ($sortColumn && $sortOrder) {
+            $sql .= " ORDER BY " . mysqli_real_escape_string($link, $sortColumn) . " " . mysqli_real_escape_string($link, $sortOrder);
+        }
         $result = mysqli_query($link, $sql);
     
         return $result;

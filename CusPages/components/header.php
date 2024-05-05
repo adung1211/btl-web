@@ -19,10 +19,11 @@
             </a>
 
             <div style="display: flex; gap: 20px; margin-top: 5px;">
-                <a href="../Product/vga.php" class="nav-link">VGA</a>
-                <a href="../Product/screen.php" class="nav-link">Màn hình</a>
-                <a href="../Product/mouse.php" class="nav-link">Chuột máy tính</a>
-                <a href="../Product/keyboard.php" class="nav-link">Bàn phím</a>
+                <a href="../pages/product_list.php" class="nav-link">Tất cả</a>
+                <a href="../pages/product_list.php?category=Laptop" class="nav-link">Laptop</a>
+                <a href="../pages/product_list.php?category=Screen" class="nav-link">Màn hình</a>
+                <a href="../pages/product_list.php?category=Mouse" class="nav-link">Chuột</a>
+                <a href="../pages/product_list.php?category=Keyboard" class="nav-link">Bàn phím</a>
             </div>
         </div>
         <div style="display: flex; margin-left: 700px">

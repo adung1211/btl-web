@@ -3,8 +3,8 @@
     if(session_status() == PHP_SESSION_NONE){
         session_start();
     }
-    //$product_id = $_GET['id'];
-    $product_id = 3;
+    $product_id = $_GET['id'];
+    //$product_id = 3;
     $product = getProductInfo($product_id);
 ?>
 
