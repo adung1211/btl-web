@@ -38,12 +38,19 @@
                 <div style="display: flex; margin-bottom:10px">
                     <h1 style="margin-right: 10px">Order #<?php echo $row['id'];?></h1>
                     <?php
-                    if ($row['status'] == 'Confirmed'){
-                        echo'<div class="btn btn-success tx0">Confirmed</div>';
+                    if ($row['status'] == 'Pending'){
+                        echo'<div class="btn btn-info tx0">Pending</div>';
+                    }
+                    else if ($row['status'] == 'Processing'){
+                        echo'<div class="btn btn-primary tx0">Processing</div>';
+                    }
+                    else if ($row['status'] == 'Shipped'){
+                        echo'<div class="btn btn-success tx0">Shipped</div>';
                     }
                     else{
-                        echo'<div class="btn btn-primary tx0">Pending</div>';
+                        echo'<div class="btn btn-danger tx0">Canceled</div>';
                     }
+                    
                     ?>
                 </div>
                 <div class="ele-box" style="font-size: large;">
@@ -118,13 +125,19 @@
             </div>
             
             <?php
-                if ($row['status'] == 'Confirmed'){
-                    echo'
-                    <button type="button" class="btn btn-dark" style="margin-bottom: 20px;" disabled>Confirm order</button>                    ';
-                }
-                else{
+                if ($row['status'] == 'Pending'){
                     echo '
-                    <button type="button" class="btn btn-warning" style="margin-bottom: 20px;" onClick="handledConfirm('.$row['id'].', '.$row['user_id'].')">Confirm Order</button>
+                    <button type="button" class="btn btn-info" style="margin-bottom: 20px;" onClick="handledStatus('.$row['id'].', '.$row['user_id'].', \'Processing\')">Confirm Order</button>
+                    ';
+                }
+                if ($row['status'] == 'Processing'){
+                    echo '
+                    <button type="button" class="btn btn-info" style="margin-bottom: 20px;" onClick="handledStatus('.$row['id'].', '.$row['user_id'].', \'Shipped\')">Confirm Success</button>
+                    ';
+                }
+                if ($row['status'] != 'Canceled' && $row['status'] != 'Shipped'){
+                    echo '
+                    <button type="button" class="btn btn-warning" style="margin-bottom: 20px;" onClick="handledStatus('.$row['id'].', '.$row['user_id'].', \'Canceled\')">Confirm Cancel</button>
                     ';
                 }
             ?>

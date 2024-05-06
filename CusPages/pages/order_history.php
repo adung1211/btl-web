@@ -52,7 +52,20 @@
                                     <tr>
                                         <td>' . $order['id'] . '</td>
                                         <td>' . date('d/m/Y', strtotime($order['order_date'])) . '</td>
-                                        <td>' . $order['status'] . '</td>
+                                ';
+                                if ($order['status'] == 'Shipped'){
+                                    echo' <td style="color: green">'.$order['status'].'</td> ';
+                                }
+                                else if ($order['status'] == 'Pending'){
+                                    echo' <td style="color: #0DCAF0">'.$order['status'].'</td> ';
+                                }
+                                else if ($order['status'] == 'Processing'){
+                                    echo' <td style="color: #0C6EFD">'.$order['status'].'</td> ';
+                                }
+                                else{
+                                    echo' <td style="color: red">'.$order['status'].'</td> ';
+                                }
+                                echo '
                                         <td>' . number_format($order['total_money'], 0, ',', '.') . ' đ</td>
                                 ';
                                 $orderId = $order['id'];

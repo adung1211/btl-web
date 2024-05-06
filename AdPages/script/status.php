@@ -4,14 +4,17 @@
 ?>
 <?php
 $id = $_GET['id'];
+$status = $_GET['status'];
 $query = "  UPDATE orders
-            SET status = 'Confirmed'
+            SET status = '$status'
             WHERE id = '$id';";
 $result = mysqli_query($link, $query);
 
-$uid = $_GET['uid'];
 
+$uid = $_GET['uid'];
+$title = $_GET['title'];
+$msg = $_GET['msg'];
 $query = " INSERT INTO notifications (user_id, title, msg) 
-           VALUES ('$uid', 'Đơn hàng đã được xác nhận', 'Cảm ơn bạn đã mua hàng tại shop chúng tôi')";
+           VALUES ('$uid', '$title', '$msg')";
 $result = mysqli_query($link, $query);
 ?>

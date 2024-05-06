@@ -60,11 +60,17 @@
                                     <td>'.number_format($row['total_money']).'đ</td>
                             ';
 
-                            if ($row['status'] == 'Confirmed'){
+                            if ($row['status'] == 'Shipped'){
                                 echo' <td style="color: green">'.$row['status'].'</td> ';
                             }
+                            else if ($row['status'] == 'Pending'){
+                                echo' <td style="color: #0DCAF0">'.$row['status'].'</td> ';
+                            }
+                            else if ($row['status'] == 'Processing'){
+                                echo' <td style="color: #0C6EFD">'.$row['status'].'</td> ';
+                            }
                             else{
-                                echo' <td style="color: blue">'.$row['status'].'</td> ';
+                                echo' <td style="color: red">'.$row['status'].'</td> ';
                             }
                                             
                             echo '
