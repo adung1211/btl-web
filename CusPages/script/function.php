@@ -51,7 +51,7 @@
         while ($row = mysqli_fetch_assoc($result)) {
             $notifications[] = $row;
         }
-    
+        $notifications = array_reverse($notifications);
         return $notifications;
     }
 
