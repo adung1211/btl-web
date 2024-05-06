@@ -124,7 +124,7 @@
                 }
                 else{
                     echo '
-                    <button type="button" class="btn btn-dark" style="margin-bottom: 20px;" onClick="handledConfirm('.$row['id'].', '.$row['user_id'].')">Confirm Order</button>
+                    <button type="button" class="btn btn-warning" style="margin-bottom: 20px;" onClick="handledConfirm('.$row['id'].', '.$row['user_id'].')">Confirm Order</button>
                     ';
                 }
             ?>

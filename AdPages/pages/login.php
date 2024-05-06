@@ -70,7 +70,7 @@
                 $password = $_POST['password'];
 
                 if (login($username, $password)) {
-                    header('Location: ../pages/products.php');
+                    header('Location: ../pages/dash.php');
                     
                 } else {
                     echo "<script>alert('Login failed');</script>";

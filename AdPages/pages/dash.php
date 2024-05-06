@@ -7,7 +7,35 @@
     }
 
 
-    
+    $query = "SELECT COUNT(*) AS count FROM account WHERE role = 0";
+    $result = mysqli_query($link, $query);
+    $row = mysqli_fetch_assoc($result);
+    $boxUsers = $row['count'];
+
+    $query = "SELECT COUNT(*) AS count FROM orders";
+    $result = mysqli_query($link, $query);
+    $row = mysqli_fetch_assoc($result);
+    $boxOrders = $row['count'];
+
+    $query = "SELECT COUNT(*) AS count FROM products WHERE deleted = 0";
+    $result = mysqli_query($link, $query);
+    $row = mysqli_fetch_assoc($result);
+    $boxProducts = $row['count'];
+
+    $query = "SELECT SUM(total_money) AS sum FROM orders";
+    $result = mysqli_query($link, $query);
+    $row = mysqli_fetch_assoc($result);
+    $boxSales = $row['sum'];
+
+
+
+    $query = "SELECT category, COUNT(*) as count FROM products GROUP BY category";
+    $result = mysqli_query($link, $query);
+    $cate = array();
+    while ($row = mysqli_fetch_assoc($result)) {
+        // Store the count of each category into variables
+        $cate[$row['category']] = $row['count'];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +68,7 @@
                     <div class="col">
                         <div class="box" style="background-color: #1E62F1;">
                             <i class="bi bi-people-fill"></i>
-                            <p> Users <br/> <span style="font-weight: bold;">1000</span></p>
+                            <p> Users <br/> <span style="font-weight: bold;"><?php echo $boxUsers;?></span></p>
                             <div class="dummy-right"></div>
                             
                         </div>
@@ -48,21 +76,21 @@
                     <div class="col">
                         <div class="box" style="background-color: #FE646C;">
                             <i class="bi bi-check-circle-fill"></i>
-                            <p> Orders <br/> <span style="font-weight: bold;">1000</span></p>
+                            <p> Orders <br/> <span style="font-weight: bold;"><?php echo $boxOrders;?></span></p>
                             <div class="dummy-right"></div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="box" style="background-color: #58CF5D;">
                             <i class="bi bi-bag-fill"></i>
-                            <p> Products <br/> <span style="font-weight: bold;">1000</span></p>
+                            <p> Products <br/> <span style="font-weight: bold;"><?php echo $boxProducts;?></span></p>
                             <div class="dummy-right"></div>
                         </div>
                     </div>
                     <div class="col">
                         <div class="box" style="background-color: #FBAD4A;">
                             <i class="bi bi-currency-exchange"></i>
-                            <p> Sales <br/> <span style="font-weight: bold;">1000đ</span></p>
+                            <p> Sales <br/> <span style="font-weight: bold;"><?php echo number_format($boxSales);?>đ</span></p>
                             <div class="dummy-right"></div>
                         </div>
                     </div>
@@ -78,16 +106,28 @@
                                 <div class="card-box">
                                 <div class="row row-cols-1 overflow-scroll flex-nowrap g-2" id="sale-list">
                                 <?php
-                                    for ($x = 0; $x <= 10; $x++) {
+                                    $query ="   SELECT product_id, COUNT(*) as order_count 
+                                                FROM order_detail 
+                                                GROUP BY product_id 
+                                                ORDER BY order_count DESC 
+                                                LIMIT 3
+                                            ";
+                                    $result = mysqli_query($link, $query);
+
+                                    while ((mysqli_num_rows($result) > 0) && $row = mysqli_fetch_assoc($result)) {
+                                        $query1 = "SELECT * FROM products WHERE id = {$row['product_id']}";
+                                        $result1 = mysqli_query($link, $query1);
+                                        $row1 = mysqli_fetch_assoc($result1);
+
                                         echo '
                                         <div class="col">
                                         <div class="card">
-                                            <img src="https://product.hstatic.net/200000722513/product/ava_55d9a01f66cc4fd1aa26a8a91f51974e_medium.png" class="card-img-top">
+                                            <img src="'.$row1['img'].'" class="card-img-top">
                                             <div class="card-body">
-                                                <h6>Laptop gaming Acer Nitro V ANV15 51 58AN</h6>
-                                                <p style="font-style: oblique;">900,000đ</p>
+                                                <h6>'.$row1['name'].'</h6>
+                                                <p style="font-style: oblique;">'.number_format($row1['price']).'đ</p>
                                                 <div class="bar"></div>
-                                                Has sold 499 in all time
+                                                Has sold '.$row['order_count'].' in all time
                                             </div>
                                         </div>
                                         </div>
@@ -134,7 +174,7 @@
                     labels: ['VGA', 'Keyboard', 'Mouse', 'Screen'],
                     datasets: [{
                         label: '# Unit',
-                        data: [12, 19, 3, 5],
+                        data: [<?php echo "{$cate['VGA']},{$cate['Keyboard']},{$cate['Mouse']},{$cate['Screen']}";?>],
                         borderWidth: 1
                     }]
                 },
