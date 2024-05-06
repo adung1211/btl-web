@@ -27,7 +27,7 @@
                 <a href="../pages/product_list.php?category=Keyboard" class="nav-link">Bàn phím</a>
             </div>
         </div>
-        <div class="header-item" style="margin-left: 700px">
+        <div class="header-item" style="margin-left: 400px">
             <div class="d-flex ms-auto align-items-center flex-nowrap">
                 <?php
                     if (isset($_SESSION['username'])) {
