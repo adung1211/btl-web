@@ -20,6 +20,7 @@
                             <option value="VGA">VGA</option>
                             <option value="Keyboard">Keyboard</option>
                             <option value="Mouse">Chuột</option>
+                            <option value="Screen">Màn hình</option>
                         </select>
                     </div>
 
@@ -87,6 +88,7 @@
                             <option value="VGA">VGA</option>
                             <option value="Keyboard">Keyboard</option>
                             <option value="Mouse">Mouse</option>
+                            <option value="Screen">Screen</option>
                         </select>
                     </div>
 

@@ -49,7 +49,6 @@
                         $no = 0;
 
                         while (mysqli_num_rows($result) > 0 && $row = mysqli_fetch_assoc($result)){
-                            if ($row['deleted'] == 1) continue;
                             $no++;
                             echo '
                                 <tr>
