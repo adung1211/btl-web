@@ -24,12 +24,18 @@
         <!--Main-->
         <div class="main-container">
             <div class="left-main">
-                <img src="../images/ad3.png" class="ad-banner" style="float: right; margin-right: 50px">
+                <a href="https://memoryzone.com.vn/khuyen-mai" target="_blank">
+                    <img src="../images/ad3.png" class="ad-banner" style="float: right; margin-right: 50px">
+                </a>
             </div>
             <div class="center-main">
                 <div style="display: flex; justify-content: space-between">
-                    <img src="../images/ads1.img" style="width: 49.5%;">
-                    <img src="../images/ads2.img" style="width: 49.5%;">
+                    <a href="https://memoryzone.com.vn/khuyen-mai" target="_blank" style="width: 49.5%;">
+                        <img src="../images/ads1.img"style="width: 100%;">
+                    </a>
+                    <a href="https://memoryzone.com.vn/khuyen-mai" target="_blank" style="width: 49.5%;">
+                        <img src="../images/ads2.img"style="width: 100%;">
+                    </a>
                 </div>
 
                 <div class="ele-box">
@@ -191,7 +197,9 @@
                 
             </div>
             <div class="right-main">
-                <img src="../images/ad.png" class="ad-banner">
+                <a href="https://memoryzone.com.vn/khuyen-mai" target="_blank">
+                    <img src="../images/ad.png" class="ad-banner">
+                </a>
             </div>
         </div>
         

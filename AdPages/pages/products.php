@@ -39,6 +39,7 @@
                         <th scope="col">Product Name</th>
                         <th scope="col">Category</th>
                         <th scope="col">Image</th>
+                        <th scope="col">Price</th>
                         <th scope="col">Action</th>
                         </tr>
                     </thead>
@@ -58,6 +59,7 @@
                                         <td>'.$row['name'].'</td>
                                         <td>'.$row['category'].'</td>
                                         <td><img src="'.$row['img'].'" style="height: 50px"></td>
+                                        <td>'.number_format($row['price']).'đ</td>
                                         <td>
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" onClick="handleEdit('.$row['id'].', \''.$row['name'].'\',\''.$row['category'].'\' ,\''.$row['img'].'\', \''.$row['price'].'\', \''.$row['manufacturer'].'\', \''.$row['warrant'].'\')">Edit</button>
                                             <button type="button" class="btn btn-danger" onClick="handleDel('.$row['id'].')">Delete</button>
