@@ -20,7 +20,7 @@
 
             <div style="display: flex; gap: 20px; margin-top: 5px;">
                 <a href="../pages/product_list.php" class="nav-link">Tất cả</a>
-                <a href="../pages/product_list.php?category=Laptop" class="nav-link">Laptop</a>
+                <a href="../pages/product_list.php?category=VGA" class="nav-link">Cạc đồ hoạ</a>
                 <a href="../pages/product_list.php?category=Screen" class="nav-link">Màn hình</a>
                 <a href="../pages/product_list.php?category=Mouse" class="nav-link">Chuột</a>
                 <a href="../pages/product_list.php?category=Keyboard" class="nav-link">Bàn phím</a>

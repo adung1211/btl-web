@@ -98,9 +98,9 @@
                                         <td>'.$no.'</td>
                                         <td>'.$row2['name'].'</td>
                                         <td><img src="'.$row2['img'].'" style="height: 50px"></td>
-                                        <td>'.$row1['price'].'đ</td>
+                                        <td>'.number_format($row1['price']).'đ</td>
                                         <td>'.$row1['quantity'].'</td>
-                                        <td>'.$row1['total_price'].'đ</td>
+                                        <td>'.number_format($row1['total_price']).'đ</td>
                                     </tr>
                                 ';
                                 
@@ -110,7 +110,7 @@
                     </table>
 
                     <div style="text-align: right; margin-right: 30px; font-size: 20px; font-style: italic;">
-                       Total: <span style="font-weight: bold;"> <?php echo $row['total_money'] ?>đ</span>
+                       Total: <span style="font-weight: bold;"> <?php echo number_format($row['total_money']) ?>đ</span>
                     </div>
                     <div>
                 </div>

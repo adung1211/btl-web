@@ -3,8 +3,8 @@
     <h2>Hello, Admin</h2>
     <form method="post">
     <div class="feat-list">
-        <a type="button" href="./main.php">
-            <i class="bi bi-house-fill h4"><span class="icon-text"> Home </span></i>
+        <a type="button" href="./dash.php">
+            <i class="bi bi-house-fill h4"><span class="icon-text"> Dashboard </span></i>
         </a>
         <a type="button" href="./products.php">
             <i class="bi bi-grid-3x3-gap-fill h4"><span class="icon-text"> Procducts </span></i>

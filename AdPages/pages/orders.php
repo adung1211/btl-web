@@ -57,7 +57,7 @@
                                     <td>'.$row['full_name'].'</td>
                                     <td>'.$row['phone_number'].'</td>
                                     <td>'.$row['order_date'].'</td>
-                                    <td>'.$row['total_money'].'đ</td>
+                                    <td>'.number_format($row['total_money']).'đ</td>
                             ';
 
                             if ($row['status'] == 'Confirmed'){
