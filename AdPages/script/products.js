@@ -78,7 +78,7 @@ function handleEdit(id, name, category, img, price, manufacturer, warrant, descr
     PriceNotComma = parseInt(price, 10);
     $("#Manuf1").val(manufacturer);
     $("#Warrant1").val(warrant.replace(/[^\d]/g, ''));
-    // $("#Desc1").val(description);
+    $("#Desc1").val(description);
 
     ID = id;
 }
