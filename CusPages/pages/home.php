@@ -3,6 +3,7 @@
         session_start();
     }
     require_once "../script/function.php";
+    include "../components/product_card.php";
 ?>
 
 <!DOCTYPE html>
@@ -33,100 +34,156 @@
 
                 <div class="ele-box">
                     <div class="head-box">
-                        <h4>Laptop gaming bán chạy</h4>
+                        <h4>Các sản phẩm bán chạy</h4>
                     </div>
 
                     <div class="card-box">
-                       <div class="row row-cols-5 overflow-scroll flex-nowrap g-2" id="lapG-list">
+                       <div class="row row-cols-5 overflow-scroll flex-nowrap g-4" style="height: 500px;" id="product-list">
                             <?php
                                 $result = getAllProducts();
 
                                 if (mysqli_num_rows($result) > 0) {
                                     while($product = mysqli_fetch_assoc($result)) {
-                                        echo '
-                                            <div class="col">
-                                                <div class="card">
-                                                    <img src="' . $product['img'] . '" class="card-img-top" alt="...">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title">' . substr($product['name'], 0, 20) . '</h5>
-                                                        <p class="card-text">' . substr($product['description'], 0, 70) . '</p>
-                                                        <form action="../components/addtocart.php" method="post">
-                                                            <input type="hidden" name="product_id" value="' . $product['id'] . '">
-                                                            <input type="hidden" name="product_name" value="' . $product['name'] . '">
-                                                            <input type="hidden" name="product_price" value="' . $product['price'] . '">
-                                                            <input type="hidden" name="product_image" value="' . $product['img'] . '">
-                                                            <button type="submit" class="btn btn-primary bg-success">Add to Cart</button>
-                                                        </form>
-                                                    </div>
-                                                    
-                                                </div>
-                                            </div>
-                                        ';
+                                        echo createHomeProductCard($product);
                                     }
                                 } else {
                                     echo "No products found";
                                 }
-                                mysqli_close($link);
                             ?>
-                            <?php
-                                for ($x = 0; $x <= 10; $x++) {
-                                    echo '
-                                        <div class="col">
-                                            <div class="card">
-                                                <img src="../images/test.img" class="card-img-top" alt="...">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Card title</h5>
-                                                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ';
-                                }
-                            ?>
+                            
                         </div>
                     </div>
 
-                    <button type="button" class="btn m-0 p-0 butLeft" onclick="srcLeft('#lapG-list', event)">
+                    <button type="button" class="btn m-0 p-0 butLeft" onclick="srcLeft('#product-list', event)">
                         <i class="bi bi-chevron-left h4"></i>
                     </button>
 
-                    <button type="button" class="btn m-0 p-0 butRight" onclick="srcRight('#lapG-list', event)">
+                    <button type="button" class="btn m-0 p-0 butRight" onclick="srcRight('#product-list', event)">
+                        <i class="bi bi-chevron-right h4"></i>
+                    </button>
+
+                </div>
+                <div class="ele-box">
+                    <div class="head-box">
+                        <h4>VGA bán chạy</h4>
+                    </div>
+
+                    <div class="card-box">
+                       <div class="row row-cols-5 overflow-scroll flex-nowrap g-4" style="height: 500px;" id="VGA-list">
+                            <?php
+                                $result = getProductsByCategory('VGA');
+
+                                if (mysqli_num_rows($result) > 0) {
+                                    while($product = mysqli_fetch_assoc($result)) {
+                                        echo createHomeProductCard($product);
+                                    }
+                                } else {
+                                    echo "No products found";
+                                }
+                            ?>
+                            
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn m-0 p-0 butLeft" onclick="srcLeft('#VGA-list', event)">
+                        <i class="bi bi-chevron-left h4"></i>
+                    </button>
+
+                    <button type="button" class="btn m-0 p-0 butRight" onclick="srcRight('#VGA-list', event)">
+                        <i class="bi bi-chevron-right h4"></i>
+                    </button>
+
+                </div>
+                <div class="ele-box">
+                    <div class="head-box">
+                        <h4> Màn hình bán chạy  </h4>
+                    </div>
+
+                    <div class="card-box">
+                       <div class="row row-cols-5 overflow-scroll flex-nowrap g-4" style="height: 500px;" id="screen-list">
+                            <?php
+                                $result = getProductsByCategory('Screen');
+
+                                if (mysqli_num_rows($result) > 0) {
+                                    while($product = mysqli_fetch_assoc($result)) {
+                                        echo createHomeProductCard($product);
+                                    }
+                                } else {
+                                    echo "No products found";
+                                }
+                            ?>
+                            
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn m-0 p-0 butLeft" onclick="srcLeft('#screen-list', event)">
+                        <i class="bi bi-chevron-left h4"></i>
+                    </button>
+
+                    <button type="button" class="btn m-0 p-0 butRight" onclick="srcRight('#screen-list', event)">
+                        <i class="bi bi-chevron-right h4"></i>
+                    </button>
+
+                </div>
+                <div class="ele-box">
+                    <div class="head-box">
+                        <h4>Chuột bán chạy</h4>
+                    </div>
+
+                    <div class="card-box">
+                       <div class="row row-cols-5 overflow-scroll flex-nowrap g-4" style="height: 500px;" id="mouse-list">
+                            <?php
+                                $result = getProductsByCategory('Mouse');
+
+                                if (mysqli_num_rows($result) > 0) {
+                                    while($product = mysqli_fetch_assoc($result)) {
+                                        echo createHomeProductCard($product);
+                                    }
+                                } else {
+                                    echo "No products found";
+                                }
+                            ?>
+                            
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn m-0 p-0 butLeft" onclick="srcLeft('#mouse-list', event)">
+                        <i class="bi bi-chevron-left h4"></i>
+                    </button>
+
+                    <button type="button" class="btn m-0 p-0 butRight" onclick="srcRight('#mouse-list', event)">
                         <i class="bi bi-chevron-right h4"></i>
                     </button>
 
                 </div>
 
-
                 <div class="ele-box">
                     <div class="head-box">
-                        <h4>Laptop văn phòng bán chạy</h4>
+                        <h4>Bàn phím bán chạy</h4>
                     </div>
 
                     <div class="card-box">
-                       <div class="row row-cols-5 overflow-scroll flex-nowrap g-2" id="lapO-list">
+                       <div class="row row-cols-5 overflow-scroll flex-nowrap g-4" style="height: 500px;" id="keyboard-list">
                             <?php
-                                for ($x = 0; $x <= 10; $x++) {
-                                    echo '
-                                        <div class="col">
-                                            <div class="card">
-                                                <img src="../images/test.img" class="card-img-top" alt="...">
-                                                <div class="card-body">
-                                                    <h5 class="card-title">Card title</h5>
-                                                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ';
+                                $result = getProductsByCategory('Keyboard');
+
+                                if (mysqli_num_rows($result) > 0) {
+                                    while($product = mysqli_fetch_assoc($result)) {
+                                        echo createHomeProductCard($product);
+                                    }
+                                } else {
+                                    echo "No products found";
                                 }
                             ?>
+                            
                         </div>
                     </div>
 
-                    <button type="button" class="btn m-0 p-0 butLeft" onclick="srcLeft('#lapO-list', event)">
+                    <button type="button" class="btn m-0 p-0 butLeft" onclick="srcLeft('#keyboard-list', event)">
                         <i class="bi bi-chevron-left h4"></i>
                     </button>
 
-                    <button type="button" class="btn m-0 p-0 butRight" onclick="srcRight('#lapO-list', event)">
+                    <button type="button" class="btn m-0 p-0 butRight" onclick="srcRight('#keyboard-list', event)">
                         <i class="bi bi-chevron-right h4"></i>
                     </button>
 

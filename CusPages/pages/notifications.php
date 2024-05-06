@@ -4,6 +4,8 @@
     }
     require_once '../script/function.php';
     $notifications = getNotificationsByUserId($_SESSION['userid']);
+    //reverse the array to show the latest notification first
+    $notifications = array_reverse($notifications);
 ?>
 
 <!DOCTYPE html>

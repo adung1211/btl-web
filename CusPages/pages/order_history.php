@@ -97,7 +97,6 @@
                         echo "<p style='color: #333; font-size: 20px; font-weight: bold;'>Pending: " . $orderSummary['pending'] . "</p>";
                         echo "<p style='color: #333; font-size: 20px; font-weight: bold;'>Shipped: " . $orderSummary['shipped'] . "</p>";
                         echo "<p style='color: #333; font-size: 20px; font-weight: bold;'>Processing: " . $orderSummary['processing'] . "</p>";
-                        echo "<p style='color: #333; font-size: 20px; font-weight: bold;'>Shipping: " . $orderSummary['shipping'] . "</p>";
                         echo "<p style='color: #039c22; font-size: 30px; font-weight: bold;'>Tổng tiêu: <br/>" . number_format($orderSummary['totalSpend'], 0, ',', '.') . " đ</p>";
                     ?>
                 </div>

@@ -88,9 +88,6 @@
                 case 'Processing':
                     $processing++;
                     break;
-                case 'Shipping':
-                    $shipping++;
-                    break;
             }
         }
     
@@ -100,7 +97,6 @@
             'pending' => $pending,
             'shipped' => $shipped,
             'processing' => $processing,
-            'shipping' => $shipping,
             'totalSpend' => $totalSpend,
         ];
     }
