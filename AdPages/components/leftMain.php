@@ -7,7 +7,7 @@
             <i class="bi bi-house-fill h4"><span class="icon-text"> Dashboard </span></i>
         </a>
         <a type="button" href="./products.php">
-            <i class="bi bi-grid-3x3-gap-fill h4"><span class="icon-text"> Procducts </span></i>
+            <i class="bi bi-grid-3x3-gap-fill h4"><span class="icon-text"> Products </span></i>
         </a>
         <a type="button" href="./orders.php">
             <i class="bi bi-cart-fill h4"><span class="icon-text"> Orders </span></i>
