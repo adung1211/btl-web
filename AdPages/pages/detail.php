@@ -48,7 +48,7 @@
                         echo'<div class="btn btn-success tx0">Shipped</div>';
                     }
                     else{
-                        echo'<div class="btn btn-danger tx0">Canceled</div>';
+                        echo'<div class="btn btn-danger tx0">Cancelled</div>';
                     }
                     
                     ?>
@@ -135,9 +135,9 @@
                     <button type="button" class="btn btn-info" style="margin-bottom: 20px;" onClick="handledStatus('.$row['id'].', '.$row['user_id'].', \'Shipped\')">Confirm Success</button>
                     ';
                 }
-                if ($row['status'] != 'Canceled' && $row['status'] != 'Shipped'){
+                if ($row['status'] != 'Cancelled' && $row['status'] != 'Shipped'){
                     echo '
-                    <button type="button" class="btn btn-warning" style="margin-bottom: 20px;" onClick="handledStatus('.$row['id'].', '.$row['user_id'].', \'Canceled\')">Confirm Cancel</button>
+                    <button type="button" class="btn btn-warning" style="margin-bottom: 20px;" onClick="handledStatus('.$row['id'].', '.$row['user_id'].', \'Cancelled\')">Confirm Cancel</button>
                     ';
                 }
             ?>

@@ -106,10 +106,10 @@
                         $orderSummary = getOrderSummaryByUserId($userId);
                         
                         echo "<p style='color: #333; font-size: 20px; font-weight: bold;'>Total Orders: " . $orderSummary['totalOrders'] . "</p>";
-                        echo "<p style='color: #333; font-size: 20px; font-weight: bold;'>Cancelled: " . $orderSummary['cancelled'] . "</p>";
-                        echo "<p style='color: #333; font-size: 20px; font-weight: bold;'>Pending: " . $orderSummary['pending'] . "</p>";
-                        echo "<p style='color: #333; font-size: 20px; font-weight: bold;'>Shipped: " . $orderSummary['shipped'] . "</p>";
-                        echo "<p style='color: #333; font-size: 20px; font-weight: bold;'>Processing: " . $orderSummary['processing'] . "</p>";
+                        echo "<p style='color: red; font-size: 20px; font-weight: bold;'>Cancelled: " . $orderSummary['cancelled'] . "</p>";
+                        echo "<p style='color: #0DCAF0; font-size: 20px; font-weight: bold;'>Pending: " . $orderSummary['pending'] . "</p>";
+                        echo "<p style='color: green; font-size: 20px; font-weight: bold;'>Shipped: " . $orderSummary['shipped'] . "</p>";
+                        echo "<p style='color: #0C6EFD; font-size: 20px; font-weight: bold;'>Processing: " . $orderSummary['processing'] . "</p>";
                         echo "<p style='color: #039c22; font-size: 30px; font-weight: bold;'>Tổng tiêu: <br/>" . number_format($orderSummary['totalSpend'], 0, ',', '.') . " đ</p>";
                     ?>
                 </div>
