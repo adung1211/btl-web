@@ -55,7 +55,7 @@
       }
     ?>
     </div>
-    <div class="fixed-bottom">
+    <div class="">
       <?php include "../components/footer.html" ?>
     </div>
 
