@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2024 at 04:44 AM
+-- Generation Time: May 07, 2024 at 11:34 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -183,7 +183,12 @@ INSERT INTO `orders` (`id`, `user_id`, `full_name`, `email`, `phone_number`, `ad
 (57, 49, 'Lê Thị Z', 'z.le@example.com', '0990123456', '997 Lý Tự Trọng', 'Bàn phím đủ màu sắc', '2024-05-07 04:41:24', 'Pending', 2380000),
 (58, 49, ' Phạm Văn W', 'van.w.pham@example.com', '0901234567', '123 ABC', 'Màn hình rẻ vậy shop', '2024-05-07 04:41:56', 'Pending', 3540000),
 (59, 49, 'Phạm Thị K', 'k.pham@example.com', '0990123456', '808 ABC', '', '2024-05-07 04:42:45', 'Pending', 13710000),
-(60, 29, 'Trần Văn Yên', 'van.yen.tran@example.com', '0989012346', '880 Điện Biên Phủ', '', '2024-05-07 04:43:36', 'Pending', 2380000);
+(60, 29, 'Trần Văn Yên', 'van.yen.tran@example.com', '0989012346', '880 Điện Biên Phủ', '', '2024-05-07 04:43:36', 'Pending', 2380000),
+(61, 30, 'John Smith', 'john.smith@example.com', '0123456789', '123 Main Street', 'Please make a fast delivery for me !', '2024-05-07 11:28:47', 'Pending', 1939000),
+(62, 30, 'Maria Garcia', 'maria.garcia@example.com', '0213456789', '456 Elm Street', '123', '2024-05-07 11:29:50', 'Pending', 43650000),
+(63, 33, 'David Johnson', 'david.johnson@example.com', '0321456789', '789 Oak Avenue', 'Please ship for me as quick as possible', '2024-05-07 11:31:24', 'Pending', 42990000),
+(64, 39, 'Emily Brown', 'emily.brown@example.com', '0412356789', '321 Pine Road', 'I like your e-store bro !!!', '2024-05-07 11:32:37', 'Pending', 101569000),
+(65, 43, 'Michael Wang', 'michael.wang@example.com', '0541236789', '555 Cedar Lane', 'very cheap !!', '2024-05-07 11:33:39', 'Pending', 45259000);
 
 -- --------------------------------------------------------
 
@@ -318,7 +323,31 @@ INSERT INTO `order_detail` (`id`, `order_id`, `product_id`, `quantity`, `price`,
 (117, 59, 24, 1, 12990000, 12990000),
 (118, 59, 29, 1, 720000, 720000),
 (119, 60, 2, 1, 1790000, 1790000),
-(120, 60, 27, 1, 590000, 590000);
+(120, 60, 27, 1, 590000, 590000),
+(121, 61, 66, 1, 99000, 99000),
+(122, 61, 61, 1, 450000, 450000),
+(123, 61, 62, 1, 1390000, 1390000),
+(124, 62, 55, 1, 12390000, 12390000),
+(125, 62, 52, 1, 12890000, 12890000),
+(126, 62, 47, 1, 4990000, 4990000),
+(127, 62, 50, 1, 4390000, 4390000),
+(128, 62, 51, 1, 8990000, 8990000),
+(129, 63, 70, 1, 8990000, 8990000),
+(130, 63, 54, 1, 15500000, 15500000),
+(131, 63, 56, 1, 18500000, 18500000),
+(132, 64, 53, 1, 999000, 999000),
+(133, 64, 55, 1, 12390000, 12390000),
+(134, 64, 60, 1, 17990000, 17990000),
+(135, 64, 38, 1, 67990000, 67990000),
+(136, 64, 46, 1, 950000, 950000),
+(137, 64, 30, 1, 1250000, 1250000),
+(138, 65, 68, 1, 2890000, 2890000),
+(139, 65, 2, 1, 1790000, 1790000),
+(140, 65, 45, 1, 890000, 890000),
+(141, 65, 64, 1, 3490000, 3490000),
+(142, 65, 65, 1, 3650000, 3650000),
+(143, 65, 43, 1, 550000, 550000),
+(144, 65, 33, 1, 31999000, 31999000);
 
 -- --------------------------------------------------------
 
@@ -373,7 +402,37 @@ INSERT INTO `products` (`id`, `name`, `category`, `img`, `price`, `manufacturer`
 (37, 'Màn hình MSI G2412 24 Inch IPS 170Hz G2412', 'Screen', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/aeimageframe-29449679.png?v=1714838571030', 2950000, 'MSI', '36 tháng', 'Màn hình MSI G2412 có kích thước 24 Inch độ phân giải FHD với tần số quét lên đến 170Hz 1ms và sử dụng tấm nền IPS tiên tiến cho bạn góc nhìn rộng 178/178 độ, cho phép xem màn hình từ gần như bất kỳ góc nào', 0),
 (38, 'Màn hình 6K Dell UltraSharp 32 Inch IPS 60Hz U3224KB', 'Screen', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/man-hinh-6k-dell-ultrasharp-32-inch-ips-60hz-u3224kb.jpg?v=1709278407360', 67990000, 'Dell', '60 tháng', 'Màn hình 6K Dell UltraSharp 32 Inch IPS 60Hz U3224KB cho trải nghiệm màu sắc trung thực, ngay cả trong điều kiện ánh sáng yếu hoặc khắc nghiệt, chất lượng hình ảnh cao hơn, không bị nhòe chuyển động nhờ tính năng Giảm nhiễu video 3D/2D.', 0),
 (39, 'Màn hình 4K Dell 27 Inch IPS 60Hz P2723QE', 'Screen', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/man-hinh-4k-dell-27-inch-ips-60hz-p2723qe.png?v=1648193400050', 9650000, 'Dell', '36 tháng', 'Màn hình P2723QE với tấm nền IPS sử dụng công nghệ tiên tiến cho bạn góc nhìn rộng 178/178 độ, cho phép xem màn hình từ gần như bất kỳ góc nào. Màn hình còn mang đến cho bạn hình ảnh sinh động cao với màu sắc sống động, giúp cho màn hình không chỉ lý tưởng cho các ứng dụng xem ảnh, video và duyệt web, mà cho cả các ứng dụng chuyên nghiệp yêu cầu luôn có độ chính xác màu và độ sáng ổn định.', 0),
-(40, 'Màn hình Dell 27 Inch IPS 60Hz P2722H', 'Screen', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/man-hinh-dell-27-inch-ips-60hz-p2722h-3ee5c3ad-44df-4d81-85b8-3a8ff3d9fc56.png?v=1707321670357', 5150000, 'Dell', '24 tháng', 'Với thiết kế viền màn hình siêu mỏng và mỏng hơn so với đời trước mang lại cho màn hình Dell 27 Inch IPS 60Hz P2722H kích thước nhỏ hơn, giúp tăng khoảng không gian làm việc. Ngoài ra viền mỏng giúp thiết lập đa màn hình dễ dàng, giúp ta có thể tăng năng suất làm việc lên.', 1);
+(40, 'Màn hình Dell 27 Inch IPS 60Hz P2722H', 'Screen', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/man-hinh-dell-27-inch-ips-60hz-p2722h-3ee5c3ad-44df-4d81-85b8-3a8ff3d9fc56.png?v=1707321670357', 5150000, 'Dell', '24 tháng', 'Với thiết kế viền màn hình siêu mỏng và mỏng hơn so với đời trước mang lại cho màn hình Dell 27 Inch IPS 60Hz P2722H kích thước nhỏ hơn, giúp tăng khoảng không gian làm việc. Ngoài ra viền mỏng giúp thiết lập đa màn hình dễ dàng, giúp ta có thể tăng năng suất làm việc lên.', 1),
+(41, 'Bàn phím Logitech K120 920-002582', 'Keyboard', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/ban-phim-logitech-k120-920-002582.png?v=1626168672813', 160000, 'Logitech', '6 tháng', 'Các bộ phận nhựa trong K120 bao gồm 51% nhựa tái chế sau tiêu thụ đã được chứng nhận - đem lại vòng đời thứ 2 cho nhựa đã hết hạn sử dụng từ các đồ điện tử cũ của người tiêu dùng và giúp bảo vệ môi trường.', 0),
+(42, 'Chuột Corsair Harpoon RGB PRO CH-9301111-AP', 'Mouse', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/chuot-corsair-harpoon-rgb-pro-ch-9301111-ap-77a8709b-2cb1-4005-8f72-35e59b5f1183.png?v=1706150506333', 450000, 'Corsair', '12 tháng', 'Chuột Corsair Harpoon RGB PRO được thiết kế chắc chắn có viền bền bao xung quanh, đảm bảo độ bền qua thời gian. Ngoài ra với nhiều các tính năng hiện đại, 12.000DPI có thể điều chỉnh, các nút có thể thiết lập giúp cho Corsair Harpoon PRO RGB trở thành một chiếc chuột tối ưu nhất trong tầm giá.', 0),
+(43, 'Chuột không dây Logitech Signature M650', 'Mouse', 'https://bizweb.dktcdn.net/thumb/1024x1024/100/329/122/products/chuot-khong-day-logitech-signature-m650-9.png?v=1692592108213', 550000, 'Logitech', '12 tháng', 'Logitech Signature M650 được thiết kế để mang đến cảm giác thoải mái cùng nâng cao hiệu suất và tối ưu năng suất cho bạn dù đang làm việc ở văn phòng tại nhà, quán cà phê hay thậm chí là phòng chờ sân bay.', 0),
+(44, 'Chuột Gaming không dây Asus TUF Gaming M4 Wireless 90MP02F0-BMUA00', 'Mouse', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/chuot-gaming-khong-day-asus-tuf-gaming-m4-wireless-90mp02f0-bmua00.jpg?v=1710777793127', 790000, 'Asus', '12 tháng', 'Chuột Gaming không dây Asus TUF Gaming M4 Wireless có nắp trên PBT và các nút bên hông được xử lý bằng ion bạc chống vi khuẩn. Chất liệu PBT chống mài mòn hoặc bóng, đồng thời đảm bảo cảm giác chắc chắn và độ bám chắc chắn. Bề mặt an toàn với cồn cũng cho phép bạn làm sạch bề mặt chuột mà không cần lo lắng.', 0),
+(45, 'Bàn phím cơ AKKO MonsGeek MG75 Prunus Lannesiana (Akko Sw V3)', 'Keyboard', 'https://bizweb.dktcdn.net/thumb/1024x1024/100/329/122/products/ban-phim-co-akko-monsgeek-mg75-prunus-lannesiana-1.jpg?v=1706150680587', 890000, 'AKKO', '36 tháng', 'AKKO V3 switch là một dòng switch đời mới được AKKO kết hợp cùng KTT sản xuất nhằm thỏa mãn đam mê trải nghiệm cảm giác gõ phím của người dùng. Một điểm khác biệt lớn nhất giữa AKKO switch v3 và AKKO switch v2 là lò xo có biên độ dày hơn hứa hẹn sẽ đem lại trải nghiệm độc đáo và khác biệt cho người dùng.', 0),
+(46, 'Chuột gaming Logitech HIGH PERFORMANCE HERO G502 910-005472', 'Mouse', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/chuot-gaming-logitech-high-performance-hero-g502-910-005472.jpg?v=1710498491360', 950000, 'Logitech', '36 tháng', 'Trong thể thao điện tử, chiến thắng không được đo lường bằng mét hay giây mà bằng micro-mét và mili-giây. Khi số tiền đặt cược ở mức cao nhất, một cú nhấp chuột có thể tạo ra sự khác biệt giữa việc mang về nhà số tiền $5k hay $500k. Đó là lý do tại sao Logitech HIGH PERFORMANCE HERO ra đời. Được cải tiến với cảm biến tiên tiến nhất, mang lại tốc độ và độ chính xác đáng ngạc nhiên cần thiết để chiến thắng.', 0),
+(47, 'Màn hình 2K LG 27 Inch IPS 75Hz 27QN600-B.ATV', 'Screen', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/man-hinh-2k-lg-27-inch-ips-75hz-27qn600-b-atv.jpg?v=1676260260857', 4990000, 'LG', '36 tháng', 'Màn hình 2K LG 27 27QN600-B với công nghệ HDR 10 hỗ trợ các mức độ màu và độ sáng nhất định vượt xa tính năng của các màn hình thông thường. Không chỉ mang đến cảm giác hồi hộp chưa từng có nhờ hình ảnh đẹp mắt, âm thanh chân thực mà còn giúp bạn chiến thắng nhiều hơn nhờ tính năng AMD FreeSync™, Dynamic Action Sync và Black Stabilizer.', 0),
+(48, 'Màn hình cong Gigabyte G34WQCA 2K 34 Inch VA 144Hz', 'Screen', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/man-hinh-cong-2k-gigabyte-34-inch-va-144hz-g34wqca-1.jpg?v=1705237308860', 8490000, 'Gigabyte', '36 tháng', 'Màn hình cong Gigabyte G34WQCA 2K 34 Inch VA 144Hz và độ phủ màu lên đến 90% DCI-P3 thể hiện màu sắc trung thực cao, mang lại cảm giác chìm đắm hơn.', 0),
+(49, 'Màn hình ASRock Challenger CL25FF 24.5 inch IPS 100Hz CL25FF', 'Screen', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/man-hinh-asrock-challenger-cl25ff-24-5-inch-ips-100hz-cl25ff-06.jpg?v=1715014925247', 2100000, 'ASRock', '12 tháng', 'Màn hình ASRock Challenger CL25FF IPS 100Hz sở hữu thiết kế hiện đại với viền bezel siêu mỏng ba cạnh, mang đến trải nghiệm không gian ấn tượng. Chân đế có thể nghiêng giúp bạn dễ dàng tìm được góc nhìn thoải mái nhất.', 0),
+(50, 'Màn hình LG UltraGear 27 Inch IPS 144Hz 27GN65R-B', 'Screen', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/man-hinh-lg-ultragear-24-inch-ips-144hz-24gn65r-b-atv-8885b3e9-3c0d-48f2-9170-291e16a3dea1.jpg?v=1715014927603', 4390000, 'LG', '12 tháng', 'Màn hình LG UltraGear 27 Inch 27GN65R-B có kích thước 27 Inch độ phân giải FHD với tần số quét 144Hz 1ms và sử dụng tấm nền công nghệ IPS tiên tiến cho bạn góc nhìn rộng 178/178 độ, cho phép xem màn hình từ gần như bất kỳ góc nào.', 0),
+(51, 'Màn hình ACER Aopen Fire Legend UM.KX2SV.F01 24.5 inch IPS 390Hz', 'Screen', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/man-hinh-acer-aopen-fire-legend-25xv2q-f-24-5-inch-ips-fhd-390hz-05.jpg?v=1713523207707', 8990000, 'Acer', '36 tháng', 'Bạn đang tìm kiếm một màn hình máy tính đáp ứng tốt nhu cầu giải trí và làm việc? Màn hình Acer Aopen Fire Legend 25XV2Q F 24.5 inch IPS FHD 390Hz là lựa chọn hoàn hảo dành cho bạn. Với thiết kế hiện đại, hiệu năng mạnh mẽ và giá cả hợp lý, đây là sản phẩm hứa hẹn mang đến cho bạn những trải nghiệm tuyệt vời nhất.', 0),
+(52, 'VGA ASRock Radeon RX 7700 XT Steel Legend 12G OC GDDR6 RX7700XT-SL-12GO', 'VGA', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/vga-asrock-radeon-rx-7700-xt-steel-legend-12g-oc-gddr6-rx7700xt-sl-12go.jpg?v=1696584473603', 12890000, 'ASRock', '36 tháng', 'VGA ASRock Radeon RX 7700 XT Steel Legend 12G OC GDDR6 tận dụng các công nghệ làm mát tiên tiến từ các card đồ họa hàng đầu, thiết kế 3 fan giúp tối ưu hóa khả năng tản nhiệt và là sự lựa chọn hoàn hảo cho cho những hệ thống cân đối giữa hiệu năng và thiết kế.', 0),
+(53, 'VGA Asus ROG Strix Radeon RX 7600 OC Edition 8GB GDDR6 ROG-STRIX-RX7600-O8G-GAMING', 'VGA', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/vga-asus-rog-strix-radeon-rx-7600-oc-edition-8gb-gddr6-rog-strix-rx7600-o8g-gaming-3.jpg?v=1689654270593', 999000, 'Asus', '12 tháng', 'ROG Strix Radeon RX 7600 OC Edition năm nay được khoác lên mình thiết kế vuông vức, hầm hố hơn, các bố cục trở nên nổi bật với dải led A-RGB được khắc trạm tạo điểm nhấn cho sản phẩm, ở fan của sản phẩm vẫn sẽ có biểu tượng đặc trưng của ROG.', 0),
+(54, 'VGA PowerColor Radeon Hellhound Spectral White RX 7800 XT 16G OC GDDR6 RX-7800-XT-16G-L/OC/WHITE', 'VGA', 'https://bizweb.dktcdn.net/thumb/large/100/329/122/products/vga-powercolor-radeon-hellhound-spectral-white-rx-7800-xt-16g-oc-gddr6.jpg?v=1715014837000', 15500000, 'PowerColor', '12 tháng', 'VGA PowerColor Radeon Hellhound Spectral White RX 7800 XT mang lại hiệu suất, hiệu quả tiếng ồn thấp và tính thẩm mỹ cao mà các game thủ chuyên nghiệp đã công nhận và tin tưởng.', 0),
+(55, 'VGA Sapphire Radeon PURE RX 7700 XT Gaming OC 12G GDDR6', 'VGA', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/vga-sapphire-radeon-pure-rx-7700-xt-gaming-oc-12g-gddr6.jpg?v=1706351817190', 12390000, 'Sapphire', '12 tháng', 'VGA Sapphire Radeon PURE RX 7700 XT Gaming OC 12G GDDR6 được thiết kế với nguồn điện kỹ thuật số mang lại khả năng kiểm soát điện năng chính xác và hiệu suất sử dụng điện năng vượt trội.', 0),
+(56, 'VGA Asus ProArt GeForce RTX 4070 12GB GDDR6X PROART-RTX4070-12G', 'VGA', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/vga-asus-proart-geforce-rtx-4070-12gb-gddr6x-proart-rtx4070-12g-1.jpg?v=1704274133507', 18500000, 'Asus', '12 tháng', 'VGA Asus ProArt GeForce RTX 4070 12GB GDDR6X thiết kế quạt công nghệ Axial giúp tối ưu hóa cho bộ tản nhiệt để tản nhiệt tốt hơn và diện tích bề mặt to hơn thế hệ trước. Số lượng cánh quạt đã được tăng lên cho cả ba quạt, với 13 cánh trên quạt trung tâm và 11 cánh trên quạt phụ. Vòng tròn bên ngoài nối liền với cánh quạt đã được làm mỏng đi cho phép hút gió bên ngoài nhiều hơn và dẫn luồng khí qua bộ tản nhiệt tốt hơn.', 0),
+(57, 'VGA MSI GeForce RTX 4070 SUPER GAMING X SLIM 12G GDDR6X', 'VGA', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/vga-msi-geforce-rtx-4070-super-gaming-x-slim-12g-gddr6x-8.jpg?v=1705633945587', 19290000, 'MSI', '12 tháng', 'VGA MSI GeForce RTX 4070 SUPER GAMING X SLIM 12G GDDR6X sử dụng Fan TORX 5.0 với hiểu quả được cải tiến vượt bật giúp cánh quạt tập trung được luồng không khí vào hệ thống làm mát.', 0),
+(58, 'VGA Gigabyte Radeon RX 6600 EAGLE 8G GDDR6 GV-R66EAGLE-8GD', 'VGA', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/vga-gigabyte-radeon-rx-6600-eagle-8g-gddr6.jpg?v=1686131850153', 5450000, 'Gigabyte', '12 tháng', 'VGA Gigabyte Radeon RX 6600 EAGLE mang lại hiệu suất, hiệu quả tiếng ồn thấp và tính thẩm mỹ cao mà các game thủ chuyên nghiệp đã công nhận và tin tưởng. Bạn có thể thưởng thức tất cả các trò chơi yêu thích của mình một cách mạnh mẽ nhưng luôn hoạt động mát mẻ và không gây tiếng ồn.', 0),
+(59, 'VGA MSI GeForce RTX 4070 Ti SUPER VENTUS 2X 16G OC GDDR6X', 'VGA', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/vga-msi-geforce-rtx-4070-ti-super-ventus-2x-16g-oc-gddr6x-3.jpg?v=1705655829940', 24550000, 'MSI', '12 tháng', 'VGA MSI GeForce RTX 4070 Ti SUPER VENTUS 2X 16G OC GDDR6X mang đến một thiết kế tập trung vào hiệu suất nhằm duy trì các yếu tố cần thiết để xử lý mọi dữ liệu cùng chương trình cần thiết. Việc bố trí quạt kép với một thiết kế cứng cáp cho phép card đồ họa trông sắc nét này phù hợp với mọi bộ PC của bạn.', 0),
+(60, 'VGA MSI GeForce RTX 4070 SUPER VENTUS 2X WHITE 12G OC GDDR6X', 'VGA', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/vga-msi-geforce-rtx-4070-super-ventus-2x-white-12g-oc-gddr6x-3.jpg?v=1705551077753', 17990000, 'MSI', '12 tháng', 'VGA MSI GeForce RTX 4070 SUPER VENTUS 2X WHITE 12G OC GDDR6X mang đến một thiết kế tập trung vào hiệu suất nhằm duy trì các yếu tố cần thiết để xử lý mọi dữ liệu cùng chương trình cần thiết. Việc bố trí quạt kép với một thiết kế cứng cáp cho phép card đồ họa trông sắc nét này phù hợp với mọi bộ PC của bạn.', 0),
+(61, 'Chuột Gaming Razer DeathAdder Essential', 'Mouse', 'https://bizweb.dktcdn.net/thumb/1024x1024/100/329/122/products/chuot-gaming-razer-deathadder-essential-7.png?v=1701050362323', 450000, 'Razer', '6 tháng', 'Kiểu dáng công thái học cổ điển vốn là dấu ấn của các thế hệ Razer DeathAdder trước đây. Thân bóng bẩy và khác biệt của nó được thiết kế để tạo sự thoải mái, cho phép bạn duy trì mức hiệu suất cao trong suốt buổi chơi game kéo dài, vì vậy bạn sẽ không bao giờ chùn bước trước sức nóng của trận chiến.', 0),
+(62, 'Chuột gaming Logitech G502 X HERO', 'Mouse', 'https://bizweb.dktcdn.net/thumb/1024x1024/100/329/122/products/chuot-gaming-logitech-g502-x-hero-1.jpg?v=1707322073757', 1390000, 'Logitech', '6 tháng', 'Chuột Gaming Logitech G502 X là sự bổ sung mới nhất cho dòng G502 huyền thoại với công nghệ chơi game tiên tiến được trang bị phím switch lai quang học và cơ học \"LIGHTFORCE\". Giờ đây, hiệu suất chơi game được tối ưu về tốc độ lẫn độ chính xác và độ tin cậy của chuột được cải thiện ở mức tối ưu nhất.', 0),
+(63, 'Chuột không dây Ergonomic Logitech Lift Vertical', 'Mouse', 'https://bizweb.dktcdn.net/thumb/1024x1024/100/329/122/products/chuot-khong-day-ergonomic-logitech-lift-vertical.jpg?v=1692592099697', 1190000, 'Logitech', '12 tháng', 'Chuột không dây Ergonomic Logitech Lift Vertical được thiết kế công thái học để mang đến cảm giác thoải mái cùng nâng cao hiệu suất giúp bạn làm việc suốt cả ngày mà vẫn thấy thoái mái và tối ưu cho những đôi tay từ nhỏ đến trung bình.', 0),
+(64, 'Chuột Gaming không dây Corsair M75 Wireless RGB', 'Mouse', 'https://bizweb.dktcdn.net/thumb/1024x1024/100/329/122/products/chuot-gaming-khong-day-corsair-m75-wireless-rgb-06.jpg?v=1712722544450', 3490000, 'Corsair', '36 tháng', 'Chuột Gaming không dây Corsair M75 Wireless RGB là một lựa chọn tuyệt vời cho các game thủ đang tìm kiếm một con chuột không dây, siêu chính xác với thiết kế đối xứng phù hợp với game thủ. ', 0),
+(65, 'Chuột không dây Corsair Nightsabre RGB CH-931B011-AP', 'Mouse', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/chuot-khong-day-corsair-nightsabre-rgb-ch-931b011-ap-2.jpg?v=1698909926467', 3650000, 'Corsair', '36 tháng', 'Chuột không dây Corsair Nightsabre RGB được thiết lập với khả năng kết nối đa dạng. Ta có thể kết nối adapter wireless với cổng cắm USB, kết nối với Bluetooth hoặc dùng dây USB rất tiện lợi trong nhiều trường hợp.', 0),
+(66, 'Bàn phím Havit KB252', 'Keyboard', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/ban-phim-havit-kb252.jpg?v=1707322053027', 99000, 'Havit', '2 tháng', 'Bàn phím fullsize giúp cho việc nhập dữ liệu, tính toán và điều hướng diễn ra nhanh chóng. Phím bấm có độ nảy cao và hành trình phím sâu nên dù là mẫu bàn phím văn phòng thường nhưng khi sử dụng, người dùng sẽ cảm giác như đang sử dụng bàn phím cơ chuyên nghiệp. Ngoài ra, Havit còn phủ một lớp lớp chống tia cực tím để có thể bảo vệ chữ, giúp phím không bị mờ hay bong tróc sau một thời gian sử dụng.', 0),
+(67, 'Bàn phím cơ TKL Dareu EK87L V2 White (Dareu Sw)', 'Keyboard', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/ban-phim-co-tkl-dareu-ek87l-v2-white-00.jpg?v=1713339520287', 390000, 'Dareu', '12 tháng', 'Bàn phím cơ TKL Dareu EK87L V2 White sở hữu thiết kế Tenkeyless (TKL) tiết kiệm tối đa không gian bàn làm việc của bạn. Nhờ vậy, bạn có thể dễ dàng mang theo bàn phím đến bất cứ đâu bạn muốn.', 0),
+(68, 'Bàn phím cơ Corsair K65 PRO MINI RGB 65% OPX CH-91A401A-NA', 'Keyboard', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/ban-phim-co-corsair-k65-pro-mini-rgb-65-percentage-opx-ch-91a401a-na-1.jpg?v=1698724199710', 2890000, 'Corsair', '12 tháng', 'Bàn phím cơ Corsair K65 PRO MINI có kiểu dáng nhỏ gọn và đa năng, với layout 65%, nhỏ hơn so với bàn phím kích thước đầy đủ thông thường đồng thời cung cấp các phím đầy đủ tính năng phù hợp cho cả game thủ cũng như người dùng văn phòng.', 0),
+(69, 'Bàn phím cơ Dareu EK75 White Led Full White (Dareu Sw)', 'Keyboard', 'https://bizweb.dktcdn.net/thumb/1024x1024/100/329/122/products/ban-phim-co-dareu-ek75-white-led-full-white-dareu-sw-4.jpg?v=1707968521127', 590000, 'Dareu', '6 tháng', 'Bàn phím cơ Dareu EK75 White LED Full White có thiết kế bố cục 75% nhỏ gọn, giúp giải phóng nhiều không gian cho chiếc bàn của bạn. Thiết kế cáp type-c có thể tháo rời giúp kết nối dễ dàng, an toàn và vận chuyển an toàn trong túi du lịch của bạn.', 0),
+(70, 'Bàn phím cơ không dây Dry Studio Black Diamond 75 Carbon Advance RGB Hotswap', 'Keyboard', 'https://bizweb.dktcdn.net/thumb/grande/100/329/122/products/ban-phim-co-khong-day-dry-studio-black-diamond-75-carbon-advance-rgb-hotswap-04.jpg?v=1711430131033', 8990000, 'Dry Studio', '12 tháng', 'Bàn phím cơ không dây Dry Studio Black Diamond 75 Carbon Advance RGB Hotswap là biểu tượng cho sự kết hợp hoàn hảo giữa hiệu năng vượt trội, thiết kế độc đáo và khả năng tùy biến cao. Nổi bật với layout 75%, kết nối 3 chế độ và hotswap, Black Diamond 75 Carbon Advance RGB hứa hẹn mang đến trải nghiệm gõ phím đỉnh cao cho mọi đối tượng, từ game thủ chuyên nghiệp đến người dùng văn phòng.', 0);
 
 -- --------------------------------------------------------
 
@@ -469,19 +528,19 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `reviews`

@@ -68,6 +68,7 @@
                     <div class="col-md-8">
                         <div class="card mb-3">
                             <div class="card-body">
+                                <?php if(isset($_SESSION['userid'])):?>
                                 <form action="../components/add_review.php" method="post">
                                     <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
                                     <input type="hidden" name="user_id" value="<?php echo $_SESSION['userid']; ?>">
@@ -88,6 +89,9 @@
                                     </div>
                                     <button type="submit" class="btn btn-primary mt-2">Submit Review</button>
                                 </form>
+                                <?php else: ?>
+                                    <h4>Hãy đăng nhập để nhận xét</h4>
+                                <?php endif ?>
                             </div>
                         </div>
                         <?php
